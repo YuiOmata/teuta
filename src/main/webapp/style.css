@@ -1,0 +1,46 @@
+* {
+    color: #333333;
+    font-family: "游ゴシック",sans-serif;
+    font-size: 120%;
+    font-weight: lighter;
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    background-image: url("img/background.jpg");
+    background-attachment: fixed;
+    background-position: center center;
+}
+.top {
+    width: 75%;
+    height: 75%;
+}
+.btn {
+    text-decoration: none;
+    font-size: 150%;
+    margin: 10px;
+    padding: 10px 40px 10px 40px;
+    background: -moz-linear-gradient(top,#ffa0a0, #e53c5c 50%,#b40033 50%,#9a0048);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffa0a0), color-stop(0.5,#63B3D2), color-stop(0.5,#b40033), to(#9a0048));
+    border: 1px solid #dddddd;
+    color: #ffffff;
+    border-radius: 10px;
+}
+.btn:hover {
+    background: -moz-linear-gradient(top,#ffd0d0, #ff5c7c 50%,#d43154 50%,#ba3168);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffc0c0), color-stop(0.5,#ff4c6c), color-stop(0.5,#c41144), to(#aa1158));
+
+}
+.text {
+    background-color: rgba(255,255,255,0.8);
+    padding: 1% 5% 5% 5%;
+}
+.text a:hover {
+    color: #99ceff;
+}
+h1 {
+    font-size: 300%;
+}

@@ -19,7 +19,8 @@ public class Model {
   public void execute() {
     try {//データベースに接続
       Class.forName("org.sqlite.JDBC");
-      Connection conn=DriverManager.getConnection("jdbc:sqlite:/home/nozomi/NetBeansProjects/mavenproject1/mydb.sqlite");
+      Connection conn=DriverManager.getConnection("jdbc:sqlite:mydb.sqlite");
+      
       PreparedStatement stmt = conn.prepareStatement("SELECT * FROM zip WHERE code LIKE ? ORDER BY code");
       stmt.setString(1, q + "%");
       stmt.setMaxRows(20);
