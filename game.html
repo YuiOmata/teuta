@@ -1,1 +1,43 @@
-html test
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>karaoke Sample</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"><!-- BootstrapのCSS読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- jQuery読み込み -->
+    <script src="js/bootstrap.min.js"></script><!-- BootstrapのJS読み込み -->
+  </head>
+
+  <body>
+    <div id="app">
+      <p>hellow</p>
+      <router-view></router-view>
+    </div>
+  </body>
+
+  <script id="links" type="text/template">
+    <a v-link="{ name: 'game', params: {songs_id: songs.id} }" class="btn-link"></a>
+  </script>
+
+  <script id="top" type="text/template">
+      <p>kokkoha top</p>
+  </script>
+
+  <script id="songs" type="text/template"> <!--リンク先を gaem/kmigayoのようにgame/*で指定する　フォーマットはl<inks>を参照-->
+    <p>chooooooooooooooooooooooooes!</p>
+  </script>
+
+  <script  id="game" type="text/javascript">
+    //document.write("こんにちは。");
+  </script>
+
+  <script id="set-ranking">
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.js"></script>
+
+  <script src="public/router.js"></script>
+</html>
