@@ -1,2 +1,3 @@
 karaoke
 
+document.write("こんにちは");
