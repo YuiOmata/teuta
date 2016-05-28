@@ -31,7 +31,10 @@ router.map({
       auth: true,
       component: Vue.extend({
         template: '#game'
-      })
+      }),
+      method: {
+
+      }
 
     }
 })
