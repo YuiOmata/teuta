@@ -30,13 +30,25 @@ router.map({
     '/game/:song_id': {
       auth: true,
       component: Vue.extend({
-        template: '#game'
-      }),
-      method: {
-
-      }
-
+        template: '#game',
+        // data: function () {
+        //   return {
+        //     textData: ''
+        //   };
+        // },
+        created: function () {
+          //set_polling(this.loadText);
+          this.loadText();
+        },
+        methods: {
+          loadText: function() {
+            $.get("data/kashi_roma.txt", function(data){
+              $("#read_text").text(data);
+            })
+          }
+        }
+      })
     }
-})
+});
 
 router.start(App, '#app')

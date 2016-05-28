@@ -2,8 +2,14 @@
 
 
 function main(){
-  document.write("finction start");
+  document.write("function start");
 
+
+  $(function() {
+    $.get("sample_txt.txt", function(data){
+    $("#read_text").text(data);
+    });
+  });
   var fso = new WScript.CreateObject("Scripting.FileSystemObject");
   document.write("cleate fso OK");
   //var allKashi = new FileReader();
