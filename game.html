@@ -11,7 +11,7 @@
 
   <body>
     <div id="app">
-      <p>hellow</p>
+      <p>test message</p>
       <router-view></router-view>
     </div>
   </body>
@@ -29,11 +29,12 @@
   </script>
 
   <script  id="game" type="text/template">
-    <p>Tihs is game page</p>
+    <h3>Tihs is game page</h3>
+    <p>All kashi: {{ allKashi }}</p3>
+    <p>All Guid: {{ allGuid }}</p>
 
-    <p>{{ "all kashi: " + allKashi }}</p>
     <div v-for="low in ‎phrases">
-      <p>{{  low }}</p>
+      {{ low.text }}
     </div>
     <!-- <script type="text/javascript" scr="public/karaoke.js"></script> -->
   </script>
