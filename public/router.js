@@ -3,7 +3,7 @@ var App = Vue.extend({})
 var router = new VueRouter()
 
 //var URL_BASE = 'https://yuitaso-ok.herokuapp.com';
-var song_name = [ 'kinigayo', 'hamamizuki', 'natuiro'];
+var song_name = [ 'kinigayo', 'hanamizuki', 'natuiro'];
 var create_url_roma = function(song_id){
   return 'public/data/' + song_name[song_id] + '_r.txt';
 };
