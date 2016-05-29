@@ -5,8 +5,9 @@ var router = new VueRouter()
 //var URL_BASE = 'https://yuitaso-ok.herokuapp.com';
 var song_name = [ 'kinigayo', 'hamamizuki', 'natuiro'];
 var create_url = function(song_id){
-  return 'public/data/' + song_name[dong_id] + '_r.txt';
-}
+console.log(song_id);
+  return 'public/data/' + song_name[song_id] + '_r.txt';
+};
 
 
 Vue.component("links", {
@@ -50,7 +51,7 @@ router.map({
           loadText: function() {
             var self = this;
             self.allKashi = "new data";
-            $.get("public/data/kinigayo_r.txt", function(data){
+            $.get(create_url(self.$route.params.song_id), function(data){
               self.allKashi = data;
               //self.phrases = allKashi.split(/\r\n|\r|\n/);
               console.log('readed');
