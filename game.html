@@ -16,10 +16,6 @@
     </div>
   </body>
 
-  <script id="links" type="text/template">
-    <a v-link="{ paht: path , params: { song_id: song_id }}">go</a>
-  </script>
-
   <script id="top" type="text/template">
       <p>This is top page</p>
 
@@ -35,12 +31,12 @@
   <script  id="game" type="text/template">
     <h3>Tihs is game page</h3>
 
-    <div v-for="phrase in phrases">
-      <table>
-        <tr>{{ guidPhrases[$index] }}</tr>
-        <tr>{{ phrase }}</tr>
-        <tr><input ></input></tr>
-      </table>
+    <div v-for="phrase in phrases" style="margin: 10px;">
+        <div id="checkBool" v-if="bool">{{ input }}</div>
+        <div>{{ guidPhrases[$index] }}</div>
+        <div>{{ phrase }}</div>
+        <div>{{ input }}</div>
+        <div><input v-model="input"></div>
     </div>
     <!-- <script type="text/javascript" scr="public/karaoke.js"></script> -->
   </script>

@@ -7,15 +7,17 @@ var song_name = [ 'kinigayo', 'hanamizuki', 'natuiro'];
 var create_url_roma = function(song_id){
   return 'public/data/' + song_name[song_id] + '_r.txt';
 };
-
 var create_url_kana = function(song_id){
   return 'public/data/' + song_name[song_id] + '_k.txt';
 };
 
-Vue.component("links", {
-  template: "#links",
-  props: ['path'],
-});
+new Vue({
+  el: '#checkBool',
+  data: {
+    input: 'init_bool',
+    bool: false
+  }
+})
 
 router.map({
     '/': {
@@ -44,7 +46,8 @@ router.map({
               allKashi: "",//歌詞全体
               allGuid: "guid",//日本語歌詞全体
               phrases: [],//行ごとに分割した配列
-              guidPhrases: []
+              guidPhrases: [],
+              input: 'init_game'
           };
         },
         created: function () {
@@ -56,21 +59,18 @@ router.map({
             $.get(create_url_roma(self.$route.params.song_id), function(data){
               self.allKashi = data;
               self.phrases = self.allKashi.split(/\r\n|\r|\n/);
+              self.phrases.pop();
             }).fail(function(){
               console.log('fail_roma');
-              // alert("Sorry cant load data: click to go select page");
-              // router.go('/sands');
             });
             $.get(create_url_kana(self.$route.params.song_id), function(data){
               self.allGuid = data;
               self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
+              self.guidPhrases.pop();
               //console.log(phrases);
             }).fail(function(){
               console.log('fail_kana');
-              // alert("Sorry cant load data: click to go select page");
-              // router.go('/sands');
             });
-
           }
         }
       })
