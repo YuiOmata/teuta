@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>karaoke Sample</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"><!-- BootstrapのCSS読み込み -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- jQuery読み込み -->
     <script src="js/bootstrap.min.js"></script><!-- BootstrapのJS読み込み -->
   </head>
 
@@ -31,11 +30,27 @@
 
   <script  id="game" type="text/template">
     <p>Tihs is game page</p>
-    <div id="read_text">here</div>
+
+    <p>{{ "all kashi: " + allKashi }}</p>
+    <div v-for="low in ‎phrases">
+      <p>{{  low }}</p>
+    </div>
     <!-- <script type="text/javascript" scr="public/karaoke.js"></script> -->
   </script>
 
   <script id="set-ranking">
+  </script>
+
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+  <!-- <script src="/public/js/jquery.timeago.js"></script> -->
+  <script>
+    $.ajaxSetup({
+      method: 'POST',
+      dataType: 'text',
+      xhrFields: {
+        withCredentials: true
+      }
+    });
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
