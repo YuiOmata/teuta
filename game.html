@@ -30,11 +30,13 @@
 
   <script  id="game" type="text/template">
     <h3>Tihs is game page</h3>
-    <p>All kashi: {{ allKashi }}</p3>
-    <p>All Guid: {{ allGuid }}</p>
 
-    <div v-for="low in ‎phrases">
-      {{ low.text }}
+    <div v-for="phrase in phrases">
+      <table>
+        <tr>{{ guidPhrases[$index] }}</tr>
+        <tr>{{ phrase }}</tr>
+        <tr><input ></input></tr>
+      </table>
     </div>
     <!-- <script type="text/javascript" scr="public/karaoke.js"></script> -->
   </script>

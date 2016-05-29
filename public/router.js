@@ -42,9 +42,9 @@ router.map({
         data: function(){
           return{
               allKashi: "",//歌詞全体
-              allGuid: "",//日本語歌詞全体
-              phrases: ['init1', 'init2'],//行ごとに分割した配列
-              guitPhrases: []
+              allGuid: "guid",//日本語歌詞全体
+              phrases: [],//行ごとに分割した配列
+              guidPhrases: []
           };
         },
         created: function () {
@@ -55,22 +55,19 @@ router.map({
             var self = this;
             $.get(create_url_roma(self.$route.params.song_id), function(data){
               self.allKashi = data;
-              //self.phrases = allKashi.split(/\r\n|\r|\n/);
-              //console.log(phrases);
-              console.log('readed');
+              self.phrases = self.allKashi.split(/\r\n|\r|\n/);
             }).fail(function(){
-              console.log('fail');
-              // alert("Sorry cant load file: click to go select page");
+              console.log('fail_roma');
+              // alert("Sorry cant load data: click to go select page");
               // router.go('/sands');
             });
             $.get(create_url_kana(self.$route.params.song_id), function(data){
               self.allGuid = data;
-              //self.phrases = allKashi.split(/\r\n|\r|\n/);
+              self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
               //console.log(phrases);
-              console.log('readed');
             }).fail(function(){
-              console.log('fail');
-              // alert("Sorry cant load file: click to go select page");
+              console.log('fail_kana');
+              // alert("Sorry cant load data: click to go select page");
               // router.go('/sands');
             });
 
