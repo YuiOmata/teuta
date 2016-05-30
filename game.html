@@ -33,7 +33,10 @@
       <div v-if="innerRange($index)">
         <div>{{ guidPhrases[$index] }}</div>
         <div>{{ phrase }}</div>
-        <div v-if="$index == onfocus">{{ inputStringCurrent }}</div>
+        <div v-if="$index == onfocus">
+          {{ inputStringCurrent[0] }}
+          <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
+        </div>
         <div><input v-if="$index == onfocus" autofocus name="field1" @keyup="checkLastInput($index)" v-model="inputChar"></div>
       </div>
     </div>
@@ -52,14 +55,6 @@
         withCredentials: true
       }
     });
-  </script>
-
-  <script>
-    document.onkeydown = function (e){
-        if(event.keyCode == 13){
-          document.field1.focus();
-        }
-    }
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>

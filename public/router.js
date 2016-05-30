@@ -90,6 +90,10 @@ router.map({
           checkLastInput: function(index){
             if( this.inputChar ==  this.phrases[index][this.inputString[index].length]){
               this.inputString[index] = this.inputString[index] + this.inputChar;
+              this.failInput = '';
+            }
+            else {
+              this.failInput = this.inputChar;
             }
             this.inputChar = '';
 
@@ -97,10 +101,6 @@ router.map({
 
             if( this.phrases[index] == this.inputString[index] )
               this.onfocus++;
-            if(this.phrasesLength == this.onfocus){
-              this.isPlaying = false;
-              this.isFinish = true;
-            }
           }
         }
       })
