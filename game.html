@@ -33,16 +33,18 @@
 
     <button v-if="!isPlaying" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
-      <div>
-        {{ guidPhrases[$index] }}
+      <div v-if="innerRange($index)">
+        <div>
+          {{ guidPhrases[$index] }}
+        </div>
+        <div>
+          {{ phrase }}
+        </div>
+        <div>
+          {{ input }}<font v-if="failInput" color="#ff0000">{{ finalInput }}</font>
+        </div>
+          <div><input autofocus name="field1" v-model="input"></div>
       </div>
-      <div>
-        {{ phrase }}
-      </div>
-      <div>
-        {{ input }}<font v-if="failInput" color="#ff0000">d</font>
-      </div>
-        <div><input name="text1" v-model="input"></div>
     </div>
     <!-- <script type="text/javascript" scr="public/karaoke.js"></script> -->
   </script>

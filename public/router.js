@@ -37,11 +37,14 @@ router.map({
         data: function(){
           return{
               allKashi: "",//歌詞全体
-              allGuid: "guid",//日本語歌詞全体
+              allGuid: "",//日本語歌詞全体
               phrases: [],//行ごとに分割した配列
               guidPhrases: [],
               isPlaying: false,
-              failInput: false
+              failInput: false,
+              finalInput: '',
+              onfocus: 1
+
           };
         },
         created: function () {
@@ -68,6 +71,9 @@ router.map({
           },
           gameStart: function(){
               this.isPlaying = true;
+          },
+          innerRange: function(index){
+            return (index>=this.onfocus && index < this.onfocus+3) ? true: false;
           }
         }
       })
