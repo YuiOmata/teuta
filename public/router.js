@@ -11,13 +11,6 @@ var create_url_kana = function(song_id){
   return 'public/data/' + song_name[song_id] + '_k.txt';
 };
 
-new Vue({
-  el: '#checkBool',
-  data: {
-    input: 'init_bool',
-    bool: false
-  }
-})
 
 router.map({
     '/': {
@@ -47,7 +40,8 @@ router.map({
               allGuid: "guid",//日本語歌詞全体
               phrases: [],//行ごとに分割した配列
               guidPhrases: [],
-              input: 'init_game'
+              isPlaying: false,
+              failInput: false
           };
         },
         created: function () {
@@ -71,6 +65,9 @@ router.map({
             }).fail(function(){
               console.log('fail_kana');
             });
+          },
+          gameStart: function(){
+              this.isPlaying = true;
           }
         }
       })

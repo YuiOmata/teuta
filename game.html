@@ -17,7 +17,7 @@
   </body>
 
   <script id="top" type="text/template">
-      <p>This is top page</p>
+      <p>This is top page !</p>
 
   </script>
 
@@ -31,12 +31,18 @@
   <script  id="game" type="text/template">
     <h3>Tihs is game page</h3>
 
-    <div v-for="phrase in phrases" style="margin: 10px;">
-        <div id="checkBool" v-if="bool">{{ input }}</div>
-        <div>{{ guidPhrases[$index] }}</div>
-        <div>{{ phrase }}</div>
-        <div>{{ input }}</div>
-        <div><input v-model="input"></div>
+    <button v-if="!isPlaying" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
+    <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
+      <div>
+        {{ guidPhrases[$index] }}
+      </div>
+      <div>
+        {{ phrase }}
+      </div>
+      <div>
+        {{ input }}<font v-if="failInput" color="#ff0000">d</font>
+      </div>
+        <div><input name="text1" v-model="input"></div>
     </div>
     <!-- <script type="text/javascript" scr="public/karaoke.js"></script> -->
   </script>
