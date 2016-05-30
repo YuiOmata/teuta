@@ -43,8 +43,8 @@ router.map({
               isPlaying: false,
               failInput: false,
               finalInput: '',
-              onfocus: 1
-
+              onfocus: 1,
+              input: []
           };
         },
         created: function () {
@@ -74,6 +74,9 @@ router.map({
           },
           innerRange: function(index){
             return (index>=this.onfocus && index < this.onfocus+3) ? true: false;
+          },
+          check: function(kc){
+            console.log(kc);
           }
         }
       })

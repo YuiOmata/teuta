@@ -40,10 +40,11 @@
         <div>
           {{ phrase }}
         </div>
-        <div>
-          {{ input }}<font v-if="failInput" color="#ff0000">{{ finalInput }}</font>
-        </div>
-          <div><input autofocus name="field1" v-model="input"></div>
+        <!-- <div>
+          {{ input[$index] }}<font v-if="failInput" color="#ff0000">{{ finalInput }}</font>
+        </div> -->
+          <div><input autofocus name="field1" v-model="input[$index]" style="font-size: 20px;"></div>
+          <div v-on="chack(document.event.keyCode)"><div>
       </div>
     </div>
     <!-- <script type="text/javascript" scr="public/karaoke.js"></script> -->
@@ -62,6 +63,14 @@
         withCredentials: true
       }
     });
+  </script>
+
+  <script id="game">
+    document.onkeydown = typeGame;
+    function typeGame(evt){
+      var kc = event.keyCode;
+      console.log(kc);
+    }
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
