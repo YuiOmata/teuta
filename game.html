@@ -21,33 +21,23 @@
 
   </script>
 
-  <script id="songs" type="text/template"> <!--リンク先を gaem/kmigayoのようにgame/*で指定する　フォーマットはl<inks>を参照-->
-    <p>choooooooes!</p>
-    <!-- <a v-link="{ name: 'game' , params: { song_id: 0 }}">君が代</a> -->
+  <script id="songs" type="text/template">
     <a v-link="{ path: '/game/0' }">君が代</a>
     <a v-link="{ path: '/game/1' }">ハナミズキ</a>
   </script>
 
   <script  id="game" type="text/template">
     <h3>Tihs is game page</h3>
-    <button v-if="!isPlaying" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
+    <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
-        <div>
-          {{ guidPhrases[$index] }}
-        </div>
-        <div>
-          {{ phrase }}
-        </div>
-        <!-- <div>{{ inputString[$index]  + " input String"}}</div> -->
-        <div><input v-if="$index == onfocus" autofocus @keyup="chackLastInput($index)" v-model="inputChar" style="font-size: 20px;"></div>
+        <div>{{ guidPhrases[$index] }}</div>
+        <div>{{ phrase }}</div>
+        <div v-if="$index == onfocus">{{ inputStringCurrent }}</div>
+        <div><input v-if="$index == onfocus" autofocus name="field1" @keyup="checkLastInput($index)" v-model="inputChar"></div>
       </div>
     </div>
     <h1 v-if="isFinish">clear</h1>
-  </script>
-
-  <script id="clear">
-    <h1>clear</h1>
   </script>
 
   <script id="set-ranking">
@@ -62,6 +52,14 @@
         withCredentials: true
       }
     });
+  </script>
+
+  <script>
+    document.onkeydown = function (e){
+        if(event.keyCode == 13){
+          document.field1.focus();
+        }
+    }
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>

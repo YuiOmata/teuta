@@ -40,6 +40,7 @@ router.map({
               allGuid: "",//日本語歌詞全体
               phrases: [],//行ごとに分割した配列
               guidPhrases: [],
+              stillStart: true,
               isPlaying: false,
               isFinish: false,
               failInput: false,
@@ -52,6 +53,11 @@ router.map({
         },
         created: function () {
           this.loadAllKashi();
+        },
+        computed: {
+          inputStringCurrent: function(index){
+            return this.inputString;
+          }
         },
         methods: {
           loadAllKashi: function() {
@@ -75,18 +81,19 @@ router.map({
             });
           },
           gameStart: function(){
+              this.stillStart = false;
               this.isPlaying = true;
           },
           innerRange: function(index){
             return (index>=this.onfocus && index < this.onfocus+3) ? true: false;
           },
-          chackLastInput: function(index){
+          checkLastInput: function(index){
             if( this.inputChar ==  this.phrases[index][this.inputString[index].length]){
               this.inputString[index] = this.inputString[index] + this.inputChar;
             }
             this.inputChar = '';
 
-            console.log(this.inputString[index] + " key up now!" + this.inputString[index].length);
+            console.log(this.inputString[index]);
 
             if( this.phrases[index] == this.inputString[index] )
               this.onfocus++;
@@ -94,7 +101,6 @@ router.map({
               this.isPlaying = false;
               this.isFinish = true;
             }
-            console.log(this.onfocus);
           }
         }
       })
