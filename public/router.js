@@ -2,7 +2,7 @@
 var App = Vue.extend({})
 var router = new VueRouter()
 
-//var URL_BASE = 'https://yuitaso-ok.herokuapp.com';
+var URL_BASE = 'https://yuitaso-ok.herokuapp.com';
 var song_name = [ 'kinigayo', 'hanamizuki', 'natuiro'];
 var create_url_roma = function(song_id){
   return 'public/data/' + song_name[song_id] + '_r.txt';
@@ -40,15 +40,15 @@ router.map({
               allGuid: "",//日本語歌詞全体
               phrases: [],//行ごとに分割した配列
               guidPhrases: [],
-              stillStart: true,
+              phrasesLength: 0,//
+              stillStart: true,//以下ふらぐ共
               isPlaying: false,
-              isFinish: false,
+              isClear: false,
               failInput: false,
-              finalInput: '',
-              onfocus: 0,
-              phrasesLength: 0,
-              inputString: ['', '', '', '', '', '', '', ''],
+              onfocus: 0,//処理中の行
+              inputString: '',
               inputChar: '',
+              maxCombo: 0
           };
         },
         created: function () {
@@ -88,19 +88,25 @@ router.map({
             return (index>=this.onfocus && index < this.onfocus+3) ? true: false;
           },
           checkLastInput: function(index){
-            if( this.inputChar ==  this.phrases[index][this.inputString[index].length]){
-              this.inputString[index] = this.inputString[index] + this.inputChar;
+            //入力正誤判定
+            if( this.inputChar ==  this.phrases[ index ][ this.inputString.length ] ){
+              this.inputString = this.inputString + this.inputChar;
               this.failInput = '';
             }
             else {
               this.failInput = this.inputChar;
+              //combo = 0;
             }
             this.inputChar = '';
 
-            console.log(this.inputString[index]);
-
-            if( this.phrases[index] == this.inputString[index] )
+            if( this.inputString == this.phrases[ index ] ){//行終了判定
               this.onfocus++;
+              this.inputString = '';
+            }
+            if( this.onfocus == this.phrasesLength ){//クリア判定
+              this.isPlaying = false;
+              this.isClear = true;
+            }
           }
         }
       })

@@ -27,20 +27,19 @@
   </script>
 
   <script  id="game" type="text/template">
-    <h3>Tihs is game page</h3>
     <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
         <div>{{ guidPhrases[$index] }}</div>
         <div>{{ phrase }}</div>
         <div v-if="$index == onfocus">
-          {{ inputStringCurrent[0] }}
+          {{ inputStringCurrent }}
           <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
         </div>
         <div><input v-if="$index == onfocus" autofocus name="field1" @keyup="checkLastInput($index)" v-model="inputChar"></div>
       </div>
     </div>
-    <h1 v-if="isFinish">clear</h1>
+    <h1 v-if="isClear">clear!!</h1>
   </script>
 
   <script id="set-ranking">
