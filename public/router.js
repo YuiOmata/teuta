@@ -48,6 +48,7 @@ router.map({
               onfocus: 0,//処理中の行
               inputString: '',
               inputChar: '',
+              combo: 0,
               maxCombo: 0
           };
         },
@@ -57,6 +58,12 @@ router.map({
         computed: {
           inputStringCurrent: function(index){
             return this.inputString;
+          },
+          getCombo: function(){
+            return this.combo;
+          },
+          getMaxCombo: function(){
+            return this.maxCombo;
           }
         },
         methods: {
@@ -88,14 +95,16 @@ router.map({
             return (index>=this.onfocus && index < this.onfocus+3) ? true: false;
           },
           checkLastInput: function(index){
-            //入力正誤判定
-            if( this.inputChar ==  this.phrases[ index ][ this.inputString.length ] ){
+            if( this.inputChar ==  this.phrases[ index ][ this.inputString.length ] ){//入力正誤判定
               this.inputString = this.inputString + this.inputChar;
               this.failInput = '';
+              this.combo++;
             }
             else {
               this.failInput = this.inputChar;
-              //combo = 0;
+              if(this.combo > this.maxCombo)
+                this.maxCombo = this.combo;
+              this.combo = 0;
             }
             this.inputChar = '';
 
@@ -111,7 +120,7 @@ router.map({
         }
       })
     },
-    'clear': {
+    '/setRanking': {
       component: Vue.extend({
         template: '#clear'
       })

@@ -18,7 +18,6 @@
 
   <script id="top" type="text/template">
       <p>This is top page !</p>
-
   </script>
 
   <script id="songs" type="text/template">
@@ -28,6 +27,7 @@
 
   <script  id="game" type="text/template">
     <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
+    <h3 v-if="isPlaying">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
         <div>{{ guidPhrases[$index] }}</div>
@@ -40,9 +40,10 @@
       </div>
     </div>
     <h1 v-if="isClear">clear!!</h1>
+    <h3　v-if="isClear">{{ 'MAX コンボ：' + getMaxCombo }}</h3>
   </script>
 
-  <script id="set-ranking">
+  <script id="setRanking">
   </script>
 
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
