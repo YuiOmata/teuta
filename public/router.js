@@ -41,10 +41,13 @@ router.map({
               phrases: [],//行ごとに分割した配列
               guidPhrases: [],
               isPlaying: false,
+              isFinish: false,
               failInput: false,
               finalInput: '',
-              onfocus: 1,
-              input: []
+              onfocus: 0,
+              phrasesLength: 0,
+              inputString: ['', '', '', '', '', '', '', ''],
+              inputChar: '',
           };
         },
         created: function () {
@@ -57,6 +60,7 @@ router.map({
               self.allKashi = data;
               self.phrases = self.allKashi.split(/\r\n|\r|\n/);
               self.phrases.pop();
+              self.phrasesLength = self.phrases.length;
             }).fail(function(){
               console.log('fail_roma');
             });
@@ -64,6 +68,7 @@ router.map({
               self.allGuid = data;
               self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
               self.guidPhrases.pop();
+
               //console.log(phrases);
             }).fail(function(){
               console.log('fail_kana');
@@ -75,10 +80,28 @@ router.map({
           innerRange: function(index){
             return (index>=this.onfocus && index < this.onfocus+3) ? true: false;
           },
-          check: function(kc){
-            console.log(kc);
+          chackLastInput: function(index){
+            if( this.inputChar ==  this.phrases[index][this.inputString[index].length]){
+              this.inputString[index] = this.inputString[index] + this.inputChar;
+            }
+            this.inputChar = '';
+
+            console.log(this.inputString[index] + " key up now!" + this.inputString[index].length);
+
+            if( this.phrases[index] == this.inputString[index] )
+              this.onfocus++;
+            if(this.phrasesLength == this.onfocus){
+              this.isPlaying = false;
+              this.isFinish = true;
+            }
+            console.log(this.onfocus);
           }
         }
+      })
+    },
+    'clear': {
+      component: Vue.extend({
+        template: '#clear'
       })
     }
 });
