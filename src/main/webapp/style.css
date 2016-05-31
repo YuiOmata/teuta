@@ -50,12 +50,12 @@ body {
     border: 1px solid #dddddd;
     color: #ffffff;
     border-radius: 10px;
-    margin-top: 400px;
+    top: 40%;
 }
 .sbtn:hover {
     background: -moz-linear-gradient(top,#ffd0d0, #ff5c7c 50%,#d43154 50%,#ba3168);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffc0c0), color-stop(0.5,#ff4c6c), color-stop(0.5,#c41144), to(#aa1158));
-    margin-top: 400px;
+    margin-top: 40%;
 }
 h1 {
     font-size: 300%;
