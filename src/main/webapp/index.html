@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>karaoke Sample</title>
+    <title>teuta</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"><!-- BootstrapのCSS読み込み -->
 	<link href="style.css" rel="stylesheet" type="text/css" />
     <script src="js/bootstrap.min.js"></script><!-- BootstrapのJS読み込み -->
@@ -22,7 +22,7 @@
     <a v-link="{ path: '/songs' }" class="btn">曲を選択</a>
     <br><br>
     </p>
-    <h1>ルール説明</h1>
+    <img src="img/what.png" alt="せつめい">
     <p class="text">
         カラオケに行きたいけど時間もお金もない！そんなあなたにこのゲーム！<br>
         現れる歌詞を見ながらタイピングするだけでカラオケ気分が味わえます。<br>
@@ -51,7 +51,7 @@
         なんいど：ふつう<br>
         <br>
         <br>
-        <a href="">夏色えがおで１，２，ｊｕｍｐ！ </a><br>
+        <a v-link="{ path: '/initPage/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a><br>
         うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
         にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
         Ｍａｘｃｏｍｂｏ：５３１<br>
@@ -60,26 +60,12 @@
     </p>
   </script>
 
-  <script id="songs" type="text/template">
-    <h1>曲の選択</h1>
-    <p class="text">
-      <a v-link="{ path: '/initPage/0' }">君が代</a><br>
-      せつめい<br>
-      <br>
-      <a v-link="{ path: '/initPage/1' }">ハナミズキ</a><br>
-      せつめい<br>
-      <br>
-      <a href="">曲３</a><br>
-      せつめい<br>
-      <br>
-    </p>
-  </script>
-
   <script id="initPage" type="text/template">
-    <a v-link="{ path: '/game/' + $route.params.song_id }">start</a>
+    <a v-link="{ path: '/game/' + $route.params.song_id }" class="btn">start</a>
   </script>
 
   <script  id="game" type="text/template">
+    <audio src="public/data/"></audio>
     <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
     <h3 v-if="isPlaying">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
@@ -93,8 +79,10 @@
         <div><input v-if="$index == onfocus" autofocus name="field1" @keyup="checkLastInput($index)" v-model="inputChar"></div>
       </div>
     </div>
-    <h1 v-if="isClear">clear!!</h1>
-    <h3　v-if="isClear">{{ 'MAX コンボ：' + getMaxCombo }}</h3>
+    <div v-if="isClear">
+      <h1>clear!!</h1>
+      <h3>{{ 'MAX コンボ：' + getMaxCombo }}</h3>
+    </div>
   </script>
 
   <script id="setRanking">
