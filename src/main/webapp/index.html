@@ -65,7 +65,7 @@
   </script>
 
   <script  id="game" type="text/template">
-    <audio src="public/data/0.mp3"></audio>
+    <audio src='public/data/0.mp3' autoplay></audio>
     <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
     <h3 v-if="isPlaying">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
