@@ -116,6 +116,8 @@ router.map({
               this.inputString = '';
             }
             if( this.onfocus == this.phrasesLength ){//クリア判定
+                if(this.combo > this.maxCombo)
+                this.maxCombo = this.combo;
               this.isPlaying = false;
               this.isClear = true;
             }
