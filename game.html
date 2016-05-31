@@ -29,10 +29,7 @@
   </script>
 
   <script  id="game" type="text/template">
-    <!-- <audio src='public/data/2.mp3' autoplay></audio> -->
-    <object data="public/data/2.mp3">
-      <param name="autoplay" value="true">
-    </object>
+    <audio src='public/data/hanamizuki.mp3' autoplay></audio>
     <button v-if="stillStart" @click="gameStart">start</button>
     <h3 v-if="isPlaying">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
