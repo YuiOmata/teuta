@@ -1,8 +1,6 @@
-
 var App = Vue.extend({})
 var router = new VueRouter()
 
-var URL_BASE = 'https://yuitaso-ok.herokuapp.com';
 var song_name = [ 'kinigayo', 'hanamizuki', 'natuiro'];
 var create_url_roma = function(song_id){
   return 'public/data/' + song_name[song_id] + '_r.txt';
@@ -30,6 +28,11 @@ router.map({
         template: '#songs'
       })
     },
+    '/initPage/:song_id':{
+      component:  Vue.extend({
+        template: '#initPage'
+      })
+    },
     '/game/:song_id': {
       auth: true,
       component: Vue.extend({
@@ -41,8 +44,8 @@ router.map({
               phrases: [],//行ごとに分割した配列
               guidPhrases: [],
               phrasesLength: 0,//
-              stillStart: true,//以下ふらぐ共
-              isPlaying: false,
+              stillStart: false,//以下ふらぐ共
+              isPlaying: true,
               isClear: false,
               failInput: false,
               onfocus: 0,//処理中の行

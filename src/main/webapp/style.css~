@@ -32,10 +32,11 @@ body {
 .btn:hover {
     background: -moz-linear-gradient(top,#ffd0d0, #ff5c7c 50%,#d43154 50%,#ba3168);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffc0c0), color-stop(0.5,#ff4c6c), color-stop(0.5,#c41144), to(#aa1158));
+
 }
 .text {
     background-color: rgba(255,255,255,0.8);
-    font-size: 100%;
+    padding: 1% 5% 5% 5%;
 }
 .text a:hover {
     color: #99ceff;
