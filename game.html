@@ -21,8 +21,12 @@
   </script>
 
   <script id="songs" type="text/template">
-    <a v-link="{ path: '/game/0' }">君が代</a>
-    <a v-link="{ path: '/game/1' }">ハナミズキ</a>
+    <a v-link="{ path: '/initPage/0' }">君が代</a>
+    <a v-link="{ path: '/initPage/1' }">ハナミズキ</a>
+  </script>
+
+  <script id="initPage" type="text/template">
+    <a v-link="{ path: '/game/' + $route.params.song_id }">start</a>
   </script>
 
   <script  id="game" type="text/template">
