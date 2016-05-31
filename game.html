@@ -15,12 +15,13 @@
   </body>
 
   <script id="top" type="text/template">
-      <p>This is top page !</p>
+      <a v-link="{ path: '/songs' }">choose song!</a>
   </script>
 
   <script id="songs" type="text/template">
     <a v-link="{ path: '/initPage/0' }">君が代</a>
     <a v-link="{ path: '/initPage/1' }">ハナミズキ</a>
+    <a v-link="{ path: '/initPage/2' }">なついろ笑顔で１２jump!</a>
   </script>
 
   <script id="initPage" type="text/template">
@@ -28,8 +29,11 @@
   </script>
 
   <script  id="game" type="text/template">
-    <audio src='public/data/2.mp3' autoplay></audio>
-    <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
+    <!-- <audio src='public/data/2.mp3' autoplay></audio> -->
+    <object data="public/data/2.mp3">
+      <param name="autoplay" value="true">
+    </object>
+    <button v-if="stillStart" @click="gameStart">start</button>
     <h3 v-if="isPlaying">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
