@@ -33,19 +33,18 @@
         ・４フレーズ遅れると強制終了<br>
         ・各曲クリア条件あり<br>
         君が代、ハナミズキ、夏色えがおで１,２,jump!の三曲から選択可能！<br></p>
-    <p></br></br></p>
   </script>
 
   <script id="songs" type="text/template">
     <h1>曲の選択</h1>
     <p class="text">
-        <a v-link="{ path: '/game/0' }">君が代</a><br>
+        <a v-link="{ path: '/initPage/0' }">君が代</a><br>
         みんなだいすきにほんのこっか<br>
         だいじょうぶ、ぜったいできる<br>
         さいだいこんぼすう：７２<br>
         なんいど：かんたん <br>
         <br>
-        <a v-link="{ path: '/game/1' }">ハナミズキ</a><br>
+        <a v-link="{ path: '/initPage/1' }">ハナミズキ</a><br>
         じつは９．１１についてうたっているらしい<br>
         みんなはしってた？<br>
         さいだいこんぼすう：２３５<br>
@@ -59,6 +58,25 @@
         Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
         <br>
     </p>
+  </script>
+
+  <script id="songs" type="text/template">
+    <h1>曲の選択</h1>
+    <p class="text">
+      <a v-link="{ path: '/initPage/0' }">君が代</a><br>
+      せつめい<br>
+      <br>
+      <a v-link="{ path: '/initPage/1' }">ハナミズキ</a><br>
+      せつめい<br>
+      <br>
+      <a href="">曲３</a><br>
+      せつめい<br>
+      <br>
+    </p>
+  </script>
+
+  <script id="initPage" type="text/template">
+    <a v-link="{ path: '/game/' + $route.params.song_id }">start</a>
   </script>
 
   <script  id="game" type="text/template">
