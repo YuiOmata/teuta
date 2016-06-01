@@ -1,7 +1,7 @@
 var App = Vue.extend({})
 var router = new VueRouter()
 
-var song_name = [ 'kinigayo', 'hanamizuki', 'natsuiro'];
+var song_name = [ 'kimigayo', 'hanamizuki', 'natsuiroegao'];
 var create_url_roma = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_r.txt';
 };
