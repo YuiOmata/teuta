@@ -34,9 +34,9 @@ router.map({
       }
     })
   },
-  '/initPage/:song_id':{
+  '/startGame/:song_id':{
     component:  Vue.extend({
-      template: '#initPage'
+      template: '#startGame'
     })
   },
   '/game/:song_id': {
@@ -85,17 +85,17 @@ router.map({
             self.phrases.pop();
             self.phrasesLength = self.phrases.length;
             self.fullCombo = self.allKashi.length - self.phrases.length;
-            console.log(self.phrases);
+            // console.log(self.phrases);
           }).fail(function(){
-            console.log('fail_roma');
+            console.log('fail to road data _r');
           });
           $.get(create_url_kana(self.$route.params.song_id), function(data){
             self.allGuid = data;
             self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
             self.guidPhrases.pop();
-            console.log(self.guidPhrases);
+            // console.log(self.guidPhrases);
           }).fail(function(){
-            console.log('fail_kana');
+            console.log('fail to road data _k');
           });
         },
         gameStart: function(){

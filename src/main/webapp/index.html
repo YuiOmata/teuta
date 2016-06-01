@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>teuta</title>
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-	  <link href="style.css" rel="stylesheet" type="text/css" />
+	  <link href="public/css/style.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -39,29 +39,32 @@
 
   <script id="songs" type="text/template">
     <img src="public/data/img/select.png" alt="曲を選択">
-    <p class="text">
-        <a v-link="{ path: '/initPage/0' }">君が代</a><br>
-        みんなだいすきにほんのこっか!<br>
-        だいじょうぶ、ぜったいできる<br>
-        さいだいこんぼすう：７２<br>
-        なんいど：かんたん <br>
-        <a v-link="{ path: '/initPage/1' }">ハナミズキ</a><br>
-        じつは９．１１についてうたっているらしい<br>
-        みんなはしってた？<br>
-        さいだいこんぼすう：２３５<br>
-        なんいど：ふつう<br>
-        <br>
-        <br>
-        <a v-link="{ path: '/initPage/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a><br>
-        うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
-        にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
-        Ｍａｘｃｏｍｂｏ：５３１<br>
-        Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
-        <br>
-    </p>
+    <div class="text">
+        <a v-link="{ path: '/initPage/0' }">君が代</a>
+        <div style="margin: 30px;">
+          みんなだいすきにほんのこっか!<br>
+          だいじょうぶ、ぜったいできる<br>
+          さいだいこんぼすう：７２<br>
+          なんいど：かんたん <br>
+        </div>
+        <a v-link="{ path: '/startGame/1' }">ハナミズキ</a>
+        <div style="margin: 30px;">
+          じつは９．１１についてうたっているらしい<br>
+          みんなはしってた？<br>
+          さいだいこんぼすう：２３５<br>
+          なんいど：ふつう<br>
+        </div>
+        <a v-link="{ path: '/startGame/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a>
+        <div style="margin: 30px;">
+          うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+          にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+          Ｍａｘｃｏｍｂｏ：５３１<br>
+          Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
+        </div>
+    </div>
   </script>
 
-  <script id="initPage" type="text/template">
+  <script id="startGame" type="text/template">
     <div style="padding-top : 200px">
     <a v-link="{ path: '/game/' + $route.params.song_id }" class="sbtn" style="">start</a>
     <div>

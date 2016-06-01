@@ -10,7 +10,7 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
-    background-image: url("public/data/img/background.jpg");
+    background-image: url("../data/img/background.jpg");
     background-attachment: fixed;
     background-position: center center;
 }
