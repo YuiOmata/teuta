@@ -3,12 +3,11 @@ var router = new VueRouter()
 
 var song_name = [ 'kinigayo', 'hanamizuki', 'natsuiro'];
 var create_url_roma = function(song_id){
-  return 'public/data/' + song_name[song_id] + '_r.txt';
+  return 'public/data/text/' + song_name[song_id] + '_r.txt';
 };
 var create_url_kana = function(song_id){
-  return 'public/data/' + song_name[song_id] + '_k.txt';
+  return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
-
 
 router.map({
     '/': {
@@ -25,7 +24,14 @@ router.map({
     },
     '/songs': {
       component:  Vue.extend({
-        template: '#songs'
+        template: '#songs',
+        data: function(){
+          return{
+            comment0: '',
+            comment1: '',
+            comment2: ''
+          };
+        }
       })
     },
     '/initPage/:song_id':{
@@ -77,6 +83,7 @@ router.map({
               self.phrases = self.allKashi.split(/\r\n|\r|\n/);
               self.phrases.pop();
               self.phrasesLength = self.phrases.length;
+              console.log(self.allGuid.length);
             }).fail(function(){
               console.log('fail_roma');
             });

@@ -17,12 +17,12 @@
   </body>
 
   <script id="top" type="text/template">
-<img src="img/top.png" alt="タイトル" class="top">
+<img src="public/data/img/top.png" alt="タイトル" class="top">
     <p>
     <a v-link="{ path: '/songs' }" class="btn">曲を選択</a>
     <br><br>
     </p>
-    <img src="img/what.png" alt="せつめい">
+    <img src="public/data/img/what.png" alt="せつめい">
     <p class="text">
         カラオケに行きたいけど時間もお金もない！そんなあなたにこのゲーム！<br>
         現れる歌詞を見ながらタイピングするだけでカラオケ気分が味わえます。<br>
@@ -39,14 +39,13 @@
   </script>
 
   <script id="songs" type="text/template">
-    <img src="img/select.png" alt="曲を選択">
+    <img src="public/data/img/select.png" alt="曲を選択">
     <p class="text">
         <a v-link="{ path: '/initPage/0' }">君が代</a><br>
-        みんなだいすきにほんのこっか<br>
+        みんなだいすきにほんのこっか!<br>
         だいじょうぶ、ぜったいできる<br>
         さいだいこんぼすう：７２<br>
         なんいど：かんたん <br>
-        <br>
         <a v-link="{ path: '/initPage/1' }">ハナミズキ</a><br>
         じつは９．１１についてうたっているらしい<br>
         みんなはしってた？<br>
@@ -68,9 +67,9 @@
   </script>
 
   <script  id="game" type="text/template">
-    <audio src='public/data/0.mp3' autoplay></audio>
+    <audio src='public/data/music/0.mp3' autoplay></audio>
     <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
-    <h3 v-if="isPlaying">{{ getCombo + "コンボ！！" }}</h3>
+    <h3 v-if="getCombo > 3">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
         <div>{{ guidPhrases[$index] }}</div>
@@ -84,7 +83,8 @@
     </div>
     <div v-if="isClear">
       <h1>clear!!</h1>
-      <h3>{{ 'MAX コンボ：' + getMaxCombo }}</h3>
+      <h3 v-if="maxCombo == allKashi.length-1">FULL COMBO!!!</h3>
+      <h3 v-else>{{ 'MAX コンボ：' + maxCombo }}</h3>
     </div>
   </script>
 
