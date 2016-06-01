@@ -58,7 +58,8 @@ router.map({
               inputString: '',
               inputChar: '',
               combo: 0,
-              maxCombo: 0
+              maxCombo: 0,
+              fullCombo: 0
           };
         },
         created: function () {
@@ -83,7 +84,8 @@ router.map({
               self.phrases = self.allKashi.split(/\r\n|\r|\n/);
               self.phrases.pop();
               self.phrasesLength = self.phrases.length;
-              console.log(self.allGuid.length);
+              self.fullCombo = self.allKashi.length - self.phrases.length;
+              console.log(self.allKashi.length - self.phrases.length);
             }).fail(function(){
               console.log('fail_roma');
             });
@@ -91,8 +93,6 @@ router.map({
               self.allGuid = data;
               self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
               self.guidPhrases.pop();
-
-              //console.log(phrases);
             }).fail(function(){
               console.log('fail_kana');
             });
@@ -123,8 +123,8 @@ router.map({
               this.inputString = '';
             }
             if( this.onfocus == this.phrasesLength ){//クリア判定
-                if(this.combo > this.maxCombo)
-                this.maxCombo = this.combo;
+              if(this.combo > this.maxCombo) this.maxCombo = this.combo;
+              this.combo = 0;
               this.isPlaying = false;
               this.isClear = true;
             }
