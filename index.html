@@ -4,34 +4,76 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>karaoke Sample</title>
+    <title>teuta</title>
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+	  <link href="public/css/style.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
     <div id="app">
-      <p>test message</p>
       <router-view></router-view>
     </div>
   </body>
 
   <script id="top" type="text/template">
-      <a v-link="{ path: '/songs' }">choose song!</a>
+<img src="public/data/img/top.png" alt="タイトル" class="top">
+    <p>
+    <a v-link="{ path: '/songs' }" class="btn">曲を選択</a>
+    <br><br>
+    </p>
+    <img src="public/data/img/what.png" alt="せつめい">
+    <p class="text">
+        カラオケに行きたいけど時間もお金もない！そんなあなたにこのゲーム！<br>
+        現れる歌詞を見ながらタイピングするだけでカラオケ気分が味わえます。<br>
+        ・ローマ字の通りに歌詞を打ち込む<br>
+        ・１文字１コンボ<br>
+        ・打ち間違いでコンボが途切れる<br>
+        ・４回目のミスでその文字の打ち直し（成功するまで進めない）<br>
+        ・４フレーズ遅れると強制終了<br>
+        ・各曲クリア条件あり<br>
+        君が代、ハナミズキ、夏色えがおで１,２,jump!の三曲から選択可能！<br>
+        <br>
+        動作環境<br>
+        google Chorome, safari<br></p>
   </script>
 
   <script id="songs" type="text/template">
-    <a v-link="{ path: '/initPage/0' }">君が代</a>
-    <a v-link="{ path: '/initPage/1' }">ハナミズキ</a>
-    <a v-link="{ path: '/initPage/2' }">なついろ笑顔で１２jump!</a>
+    <img src="public/data/img/select.png" alt="曲を選択">
+    <div class="text">
+        <a v-link="{ path: '/initPage/0' }">君が代</a>
+        <div style="margin: 30px;">
+          みんなだいすきにほんのこっか!<br>
+          だいじょうぶ、ぜったいできる<br>
+          さいだいこんぼすう：７２<br>
+          なんいど：かんたん <br>
+        </div>
+        <a v-link="{ path: '/startGame/1' }">ハナミズキ</a>
+        <div style="margin: 30px;">
+          じつは９．１１についてうたっているらしい<br>
+          みんなはしってた？<br>
+          さいだいこんぼすう：２３５<br>
+          なんいど：ふつう<br>
+        </div>
+        <a v-link="{ path: '/startGame/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a>
+        <div style="margin: 30px;">
+          うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+          にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+          Ｍａｘｃｏｍｂｏ：５３１<br>
+          Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
+        </div>
+    </div>
   </script>
 
-  <script id="initPage" type="text/template">
-    <a v-link="{ path: '/game/' + $route.params.song_id }">start</a>
+  <script id="startGame" type="text/template">
+    <div style="padding-top : 200px">
+    <a v-link="{ path: '/game/' + $route.params.song_id }" class="sbtn" style="">start</a>
+    <div>
   </script>
 
   <script  id="game" type="text/template">
-    <audio src='public/data/hanamizuki.mp3' autoplay></audio>
-    <button v-if="stillStart" @click="gameStart">start</button>
-    <h3 v-if="isPlaying">{{ getCombo + "コンボ！！" }}</h3>
+    <audio src='public/data/music/0.mp3' autoplay></audio>
+    <button v-if="stillStart" @click="gameStart">start</button><!-- TODO ここをスペースキーでの操作に変更する -->
+    <h3 v-if="getCombo > 3">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
         <div>{{ guidPhrases[$index] }}</div>
@@ -45,7 +87,8 @@
     </div>
     <div v-if="isClear">
       <h1>clear!!</h1>
-      <h3>{{ 'MAX コンボ：' + getMaxCombo }}</h3>
+      <h3 v-if="maxCombo == fullCombo">FULL COMBO!!!</h3>
+      <h3 v-else>{{ 'MAX コンボ：' + maxCombo }}</h3>
     </div>
   </script>
 
