@@ -81,7 +81,7 @@
           {{ inputStringCurrent }}
           <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
         </div>
-        <div><input v-if="$index == onfocus" autofocus name="field1" @keyup="checkLastInput($index)" v-model="inputChar"></div>
+        <div><input v-if="$index == onfocus" autofocus name="field1" @keydown="checkLastInput($index)" v-model="inputChar"></div>
       </div>
     </div>
     <div v-if="isClear">
