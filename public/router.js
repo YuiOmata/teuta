@@ -25,13 +25,6 @@ router.map({
   '/songs': {
     component:  Vue.extend({
       template: '#songs',
-      data: function(){
-        return{
-          comment0: '',
-          comment1: '',
-          comment2: ''
-        };
-      }
     })
   },
   '/startGame/:song_id':{
@@ -50,11 +43,11 @@ router.map({
             phrases: [],//行ごとに分割した配列
             guidPhrases: [],
             phrasesLength: 0,//
-            stillStart: false,//以下ふらぐ共
-            isPlaying: true,
-            isClear: false,
-            failInput: false,
-            onfocus: 0,//処理中の行
+            isPlaying: true,//進行中フラグ
+            isClear: false,//終了済みフラグ
+            failInput: false,//誤字
+            onfocus: 0,//打ち込み中の行
+            onplaying: 0,//再生中の行
             inputString: '',
             inputChar: '',
             combo: 0,
@@ -64,7 +57,6 @@ router.map({
       },
       created: function () {
         this.loadAllKashi();
-        document.write('<audio src=public/data/music/' + this.$route.params.song_id + '.mp3 autoplay></audio>');
       },
       computed: {
         inputStringCurrent: function(index){
@@ -78,6 +70,11 @@ router.map({
         }
       },
       methods: {
+        playMusic: function(){
+            document.write('<audio src=public/data/music/'
+            + this.$route.params.song_id +
+            '.mp3 autoplay></audio>')
+        },
         loadAllKashi: function() {
           var self = this;
           $.get(create_url_roma(self.$route.params.song_id), function(data){
