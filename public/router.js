@@ -73,7 +73,7 @@ router.map({
         playMusic: function(){
             document.write('<audio src=public/data/music/'
             + this.$route.params.song_id +
-            '.mp3 autoplay></audio>')
+            '.mp3 autoplay></audio>');
         },
         loadAllKashi: function() {
           var self = this;
@@ -96,12 +96,8 @@ router.map({
             console.log('fail to road data _k');
           });
         },
-        gameStart: function(){
-            this.stillStart = false;
-            this.isPlaying = true;
-        },
         innerRange: function(index){
-          return (index>=this.onfocus && index < this.onfocus+3) ? true: false;
+          return (index>=this.onfocus && index < this.onfocus+3) ? true : false;
         },
         checkLastInput: function(index){
           if( this.inputChar ==  this.phrases[ index ][ this.inputString.length ] ){//入力正誤判定
@@ -133,7 +129,7 @@ router.map({
   },
   '/setRanking': {
     component: Vue.extend({
-      template: '#clear'
+      template: '#setRanking'
     })
   }
 });

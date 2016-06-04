@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>teuta</title>
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 	  <link href="public/css/style.css" rel="stylesheet" type="text/css" />
   </head>
 
@@ -16,10 +15,9 @@
   </body>
 
   <script id="top" type="text/template">
-<img src="public/data/img/top.png" alt="タイトル" class="top">
-    <p>
+    <img src="public/data/img/top.png" alt="タイトル" class="top">
+    <p style="margin-bottom: 100px;">
     <a v-link="{ path: '/songs' }" class="btn">曲を選択</a>
-    <br><br>
     </p>
     <img src="public/data/img/what.png" alt="せつめい">
     <p class="text">
@@ -71,8 +69,9 @@
   </script>
 
   <script  id="game" type="text/template">
-    <div>{{ playMusic() }}</div>
-    <h3 v-if="getCombo > 3">{{ getCombo + "コンボ！！" }}</h3>
+    {{ playMusic() }}
+
+    <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
         <div>{{ guidPhrases[$index] }}</div>
@@ -81,17 +80,24 @@
           {{ inputStringCurrent }}
           <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
         </div>
-        <div><input v-if="$index == onfocus" autofocus name="field1" @keyup="checkLastInput($index)" v-model="inputChar"></div>
+        <div><input v-if="$index == onfocus" autofocus name="field1" @keydown="checkLastInput($index)" v-model="inputChar"></div>
       </div>
     </div>
     <div v-if="isClear">
       <h1>clear!!</h1>
       <h3 v-if="maxCombo == fullCombo">FULL COMBO!!!</h3>
       <h3 v-else>{{ 'MAX コンボ：' + maxCombo }}</h3>
+
+      <div>
+        <a v-link="{ path: '/setRanking'}" class="btn">ランキングに登録</a><br>
+        <a v-link="{ path: '/startGame' + $route.params.song_id }" class="btn">Replay</a><br>
+        <a v-link="{ path: '/songs' }" class="btn">back</a><br>
+      </div>
     </div>
   </script>
 
-  <script id="setRanking">
+  <script id="setRanking"type="text/template">
+    <h1>here is set ranking</h3>
   </script>
 
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
