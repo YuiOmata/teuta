@@ -9,6 +9,14 @@ var create_url_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
+var BASE_URL =
+  'postgres://zcbumiblajsywg:lZzE-HfNK2qHipBBF_RW2pAAE1'+
+  '@ec2-54-243-249-56.compute-1.amazonaws.com:5432/d3vmush3j7ukme'+
+  '?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory';
+var create_url_database = function(){
+  return 'BASE_URL';
+};
+
 router.map({
   '/': {
     component: Vue.extend({
@@ -64,9 +72,6 @@ router.map({
         },
         getCombo: function(){
           return this.combo;
-        },
-        getMaxCombo: function(){
-          return this.maxCombo;
         }
       },
       methods: {
@@ -129,7 +134,53 @@ router.map({
   },
   '/setRanking': {
     component: Vue.extend({
-      template: '#setRanking'
+      template: '#setRanking',
+      data: function(){
+        name: '';
+      }
+    })
+  },
+  '/lookRanking': {
+    component: Vue.extend({
+      template: "#lookRanking",
+      data: function(){
+        return{
+          names: [],
+          scores: []
+        }
+      },
+      created: function(){
+        this.fetch_users();
+      },
+      methods: {
+        fetch_users: function(){
+          var self = this;
+          // var pg = require('pg');
+          var pg = require('pg').native
+
+          pg.connect(self.create_url_database(), function(err, client) {
+            if (err) {
+              console.log(err);
+            } else {
+              client.query("select * from scorebord", function(err, result) {
+                console.log("Row count: %d",result.rows.length);
+                // for (i=0; i<result.rows.length; i++) {
+                //   console.log(result.rows[i].name + ", " + result.rows[i].score);
+                // }
+              });
+            }
+          });
+          // $.ajax({
+          //   url: create_url_database()
+          // }).done( function(data){
+          //   self.names = data.name;
+          //   self.scores = data.score;
+          //   console.log('sucsses to road database!!!');
+          // }).fail(function(){
+          //   console.log('fail to road database????');
+          // });
+        }
+      }
     })
   }
 });

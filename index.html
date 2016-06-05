@@ -18,6 +18,7 @@
     <img src="public/data/img/top.png" alt="タイトル" class="top">
     <p style="margin-bottom: 100px;">
     <a v-link="{ path: '/songs' }" class="btn">曲を選択</a>
+    <a v-link="{ path: '/lookRanking' }" class="btn">ランキングを確認する</a>
     </p>
     <img src="public/data/img/what.png" alt="せつめい">
     <p class="text">
@@ -80,7 +81,7 @@
           {{ inputStringCurrent }}
           <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
         </div>
-        <div><input v-if="$index == onfocus" autofocus name="field1" @keydown="checkLastInput($index)" v-model="inputChar"></div>
+        <div><input v-if="$index == onfocus" autofocus @keydown="checkLastInput($index)" v-model="inputChar"></div>
       </div>
     </div>
     <div v-if="isClear">
@@ -97,7 +98,12 @@
   </script>
 
   <script id="setRanking"type="text/template">
-    <h1>here is set ranking</h3>
+    <h3>点数をランキングに登録しよう！</h3>
+    <form><input autofocus v-model="name"></form>
+  </script>
+
+  <script id="lookRanking" type="text/template">
+    <h3>this is lookRanking page</h3>
   </script>
 
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
