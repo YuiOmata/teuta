@@ -2,6 +2,7 @@ var App = Vue.extend({})
 var router = new VueRouter()
 
 var song_name = [ 'kimigayo', 'hanamizuki', 'natsuiroegao'];
+var fullScore = [5760, 17840, 35840];
 var create_url_roma = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_r.txt';
 };
@@ -9,13 +10,6 @@ var create_url_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-var BASE_URL =
-  'postgres://zcbumiblajsywg:lZzE-HfNK2qHipBBF_RW2pAAE1'+
-  '@ec2-54-243-249-56.compute-1.amazonaws.com:5432/d3vmush3j7ukme'+
-  '?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory';
-var create_url_database = function(){
-  return 'BASE_URL';
-};
 
 router.map({
   '/': {
@@ -53,14 +47,16 @@ router.map({
             phrasesLength: 0,//
             isPlaying: true,//進行中フラグ
             isClear: false,//終了済みフラグ
-            failInput: false,//誤字
+            failInput: '',//誤字
             onfocus: 0,//打ち込み中の行
             onplaying: 0,//再生中の行
             inputString: '',
             inputChar: '',
             combo: 0,
             maxCombo: 0,
-            fullCombo: 0
+            fullCombo: 0,
+            totalInputChars: 0,
+            score: 0
         };
       },
       created: function () {
@@ -88,7 +84,7 @@ router.map({
             self.phrases.pop();
             self.phrasesLength = self.phrases.length;
             self.fullCombo = self.allKashi.length - self.phrases.length;
-            // console.log(self.phrases);
+            console.log(self.fullCombo);
           }).fail(function(){
             console.log('fail to road data _r');
           });
@@ -109,6 +105,7 @@ router.map({
             this.inputString = this.inputString + this.inputChar;
             this.failInput = '';
             this.combo++;
+            this.totalInputChars++;
           }
           else {
             this.failInput = this.inputChar;
@@ -125,6 +122,8 @@ router.map({
           if( this.onfocus == this.phrasesLength ){//クリア判定
             if(this.combo > this.maxCombo) this.maxCombo = this.combo;
             this.combo = 0;
+            this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100;//得点
+            parseInt(this.score);
             this.isPlaying = false;
             this.isClear = true;
           }
@@ -155,30 +154,7 @@ router.map({
       methods: {
         fetch_users: function(){
           var self = this;
-          // var pg = require('pg');
-          var pg = require('pg').native
 
-          pg.connect(self.create_url_database(), function(err, client) {
-            if (err) {
-              console.log(err);
-            } else {
-              client.query("select * from scorebord", function(err, result) {
-                console.log("Row count: %d",result.rows.length);
-                // for (i=0; i<result.rows.length; i++) {
-                //   console.log(result.rows[i].name + ", " + result.rows[i].score);
-                // }
-              });
-            }
-          });
-          // $.ajax({
-          //   url: create_url_database()
-          // }).done( function(data){
-          //   self.names = data.name;
-          //   self.scores = data.score;
-          //   console.log('sucsses to road database!!!');
-          // }).fail(function(){
-          //   console.log('fail to road database????');
-          // });
         }
       }
     })

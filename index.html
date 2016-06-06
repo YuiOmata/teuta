@@ -88,7 +88,7 @@
       <h1>clear!!</h1>
       <h3 v-if="maxCombo == fullCombo">FULL COMBO!!!</h3>
       <h3 v-else>{{ 'MAX コンボ：' + maxCombo }}</h3>
-
+      <h3 v-else>{{ 'score is：' + score }}</h3>
       <div>
         <a v-link="{ path: '/setRanking'}" class="btn">ランキングに登録</a><br>
         <a v-link="{ path: '/startGame' + $route.params.song_id }" class="btn">Replay</a><br>
@@ -99,11 +99,13 @@
 
   <script id="setRanking"type="text/template">
     <h3>点数をランキングに登録しよう！</h3>
-    <form><input autofocus v-model="name"></form>
+    <div>soooooory 工事中<div>
+    <!-- <form><input autofocus v-model="name"></form> -->
   </script>
 
   <script id="lookRanking" type="text/template">
     <h3>this is lookRanking page</h3>
+    <div>soooooory 工事中<div>
   </script>
 
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
