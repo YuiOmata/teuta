@@ -16,9 +16,9 @@
 
   <script id="top" type="text/template">
     <img src="public/data/img/top.png" alt="タイトル" class="top">
-    <p style="margin-bottom: 100px;">
-    <a v-link="{ path: '/songs' }" class="btn">曲を選択</a>
-    <a v-link="{ path: '/lookRanking' }" class="btn">ランキングを確認する</a>
+    <!-- <p style="margin-bottom: 100px;"> -->
+    <div><a v-link="{ path: '/songs' }" class="btn">曲を選択</a></div>
+    <div><a v-link="{ path: '/lookRanking' }" class="btn" style="font-size: 20px;">ランキングを見る</a></div>
     </p>
     <img src="public/data/img/what.png" alt="せつめい">
     <p class="text">
@@ -39,27 +39,27 @@
   <script id="songs" type="text/template">
     <img src="public/data/img/select.png" alt="曲を選択">
     <div class="text">
-        <a v-link="{ path: '/startGame/0' }">君が代</a>
-        <div style="margin: 30px;">
-          みんなだいすきにほんのこっか!<br>
-          だいじょうぶ、ぜったいできる<br>
-          さいだいこんぼすう：７２<br>
-          なんいど：かんたん <br>
-        </div>
-        <a v-link="{ path: '/startGame/1' }">ハナミズキ</a>
-        <div style="margin: 30px;">
-          じつは９．１１についてうたっているらしい<br>
-          みんなはしってた？<br>
-          さいだいこんぼすう：２３５<br>
-          なんいど：ふつう<br>
-        </div>
-        <a v-link="{ path: '/startGame/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a>
-        <div style="margin: 30px;">
-          うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
-          にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
-          Ｍａｘｃｏｍｂｏ：５３１<br>
-          Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
-        </div>
+      <a v-link="{ path: '/startGame/0' }">君が代</a>
+      <div style="margin: 30px;">
+        みんなだいすきにほんのこっか!<br>
+        だいじょうぶ、ぜったいできる<br>
+        さいだいこんぼすう：７２<br>
+        なんいど：かんたん <br>
+      </div>
+      <a v-link="{ path: '/startGame/1' }">ハナミズキ</a>
+      <div style="margin: 30px;">
+        じつは９．１１についてうたっているらしい<br>
+        みんなはしってた？<br>
+        さいだいこんぼすう：２３５<br>
+        なんいど：ふつう<br>
+      </div>
+      <a v-link="{ path: '/startGame/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a>
+      <div style="margin: 30px;">
+        うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+        にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+        Ｍａｘｃｏｍｂｏ：５３１<br>
+        Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
+      </div>
     </div>
   </script>
 
@@ -70,8 +70,7 @@
   </script>
 
   <script  id="game" type="text/template">
-    {{ playMusic() }}
-
+    <div>{{ playMusic() }}</div>
     <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
@@ -105,7 +104,12 @@
 
   <script id="lookRanking" type="text/template">
     <h3>this is lookRanking page</h3>
-    <div>soooooory 工事中<div>
+    <div>soooooory 工事中</div>
+<!--
+    <div>君が代</div>
+    <div>ハナミズキ</div>
+    <div>夏色笑顔で１,２jump!</div>
+-->
   </script>
 
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
