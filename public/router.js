@@ -61,6 +61,7 @@ router.map({
       },
       created: function () {
         this.loadAllKashi();
+        this.playMusic();
       },
       computed: {
         inputStringCurrent: function(index){
@@ -72,9 +73,14 @@ router.map({
       },
       methods: {
         playMusic: function(){
-            document.write('<audio src=public/data/music/'
-            + this.$route.params.song_id +
-            '.mp3 autoplay></audio>');
+            document.open();
+            document.write(
+              '<audio id="sound" src="public/data/music/' +
+              + this.$route.params.song_id +
+              '.mp3" autoplay></audio>'
+            );
+            document.close();
+            console.log("music was loaded");
         },
         loadAllKashi: function() {
           var self = this;
