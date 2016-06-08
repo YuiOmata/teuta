@@ -70,7 +70,7 @@
   </script>
 
   <script  id="game" type="text/template">
-    <!-- <div>{{ playMusic() }}</div> -->
+    <p id="target">target</p>
     <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
@@ -110,6 +110,14 @@
     <div>ハナミズキ</div>
     <div>夏色笑顔で１,２jump!</div>
 -->
+  </script>
+
+  <script type="text/javascript">
+    (function() {
+      var target = document.getElementById('target');
+      console.log(target + 'get!');
+      target.innerHTML = 'currentWord';
+    })();
   </script>
 
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
