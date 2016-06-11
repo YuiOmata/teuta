@@ -83,8 +83,9 @@ router.map({
             console.log("music was loaded");
         },
         loadAllKashi: function() {
+          var id = this.$route.params.song_id;
           var self = this;
-          $.get(create_url_roma(self.$route.params.song_id), function(data){
+          $.get(create_url_roma(id), function(data){
             self.allKashi = data;
             self.phrases = self.allKashi.split(/\r\n|\r|\n/);
             self.phrases.pop();
@@ -94,7 +95,7 @@ router.map({
           }).fail(function(){
             console.log('fail to road data _r');
           });
-          $.get(create_url_kana(self.$route.params.song_id), function(data){
+          $.get(create_url_kana(id), function(data){
             self.allGuid = data;
             self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
             self.guidPhrases.pop();
