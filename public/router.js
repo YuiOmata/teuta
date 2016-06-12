@@ -3,12 +3,14 @@ var router = new VueRouter()
 
 var song_name = [ 'kimigayo', 'hanamizuki', 'natsuiroegao'];
 var fullScore = [5760, 17840, 35840];
-var create_url_roma = function(song_id){
+var create_path_roma = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_r.txt';
 };
-var create_url_kana = function(song_id){
+var create_path_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
+
+
 
 
 router.map({
@@ -61,7 +63,7 @@ router.map({
       },
       created: function () {
         this.loadAllKashi();
-        this.playMusic();
+        //this.playMusic();
       },
       computed: {
         inputStringCurrent: function(index){
@@ -74,18 +76,19 @@ router.map({
       methods: {
         playMusic: function(){
             document.open();
-            document.write(
-              '<audio id="sound" src="public/data/music/' +
-              + this.$route.params.song_id +
-              '.mp3" autoplay></audio>'
-            );
+            // document.write(
+            //   '<audio id="sound" src="public/data/music/' +
+            //   + this.$route.params.song_id +
+            //   '.mp3" autoplay></audio>'
+            // );
+            document.write("<div>test</div>");
             document.close();
-            console.log("music was loaded");
+            // console.log("music was loaded");
         },
         loadAllKashi: function() {
           var id = this.$route.params.song_id;
           var self = this;
-          $.get(create_url_roma(id), function(data){
+          $.get(create_path_roma(id), function(data){
             self.allKashi = data;
             self.phrases = self.allKashi.split(/\r\n|\r|\n/);
             self.phrases.pop();
@@ -95,7 +98,7 @@ router.map({
           }).fail(function(){
             console.log('fail to road data _r');
           });
-          $.get(create_url_kana(id), function(data){
+          $.get(create_path_kana(id), function(data){
             self.allGuid = data;
             self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
             self.guidPhrases.pop();
@@ -129,7 +132,7 @@ router.map({
           if( this.onfocus == this.phrasesLength ){//クリア判定
             if(this.combo > this.maxCombo) this.maxCombo = this.combo;
             this.combo = 0;
-            this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100;//得点
+            this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100000;//得点
             parseInt(this.score);
             this.isPlaying = false;
             this.isClear = true;

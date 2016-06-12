@@ -70,7 +70,7 @@
   </script>
 
   <script  id="game" type="text/template">
-    <p id="target"></p>
+    <p id="target">{{ playMusic() }}</p>
     <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
       <div v-if="innerRange($index)">
