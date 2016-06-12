@@ -10,7 +10,11 @@ var create_path_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-
+//var URL_BASE = "http://server-ok";
+var URL_BASE = "localhost//:3000";
+var create_url = function(endpoint){
+  return URL_BASE + endpoint;
+};
 
 
 router.map({
