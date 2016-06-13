@@ -10,8 +10,8 @@ var create_path_kana = function(song_id){
   'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-//var URL_BASE = "http://server-ok";
-var URL_BASE = "http://localhost:3000";
+//var URL_BASE = "http://yuitaso-ok-api.herokuapp.com/users";
+var URL_BASE = "http://localhost:3000/users";
 var create_url = function(endpoint){
   return URL_BASE + endpoint;
 };
@@ -159,14 +159,14 @@ router.map({
           var self = this
           // console.log("set score");
           $.ajax({
-            url: create_url('/users/create'),
-            type: 'POST',
+            url: create_url('/setRanc'),
+            type: 'GET',
             data: JSON.stringify({
               name: self.name2,
               score: self.score
             }),
           }).done(function (data) {
-            console.log("sucsess");
+            console.log("sucsess to connect DB!");
           }).fail(function(){
             console.log("fail to send");
           });
@@ -193,16 +193,16 @@ router.map({
         fetch_users: function(){
           var self = this;
           $.ajax({
-            url: create_url('/users/get'),
+            url: create_url('/getRanc'),
             type: 'GET',
             dataType: 'json'
           }).done(function (data) {
-            console.log("sucsess!!!");
+            console.log("sucsess load json");
             self.users = data;
             console.log(self.users);
             // console.log(self.guchis);
           }).fail(function () {
-            console.log("fail to road json");
+            console.log("fail to load json");
           });
 
         }
