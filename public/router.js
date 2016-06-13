@@ -7,13 +7,13 @@ var create_path_roma = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_r.txt';
 };
 var create_path_kana = function(song_id){
-  return 'public/data/text/' + song_name[song_id] + '_k.txt';
+  'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
 //var URL_BASE = "http://server-ok";
-var URL_BASE = "localhost//:3000";
-var create_url = function(endpoint){
-  return URL_BASE + endpoint;
+var URL_BASE = "http://localhost:3000";
+var create_url = function(){
+  return URL_BASE;
 };
 
 
@@ -145,11 +145,19 @@ router.map({
       }
     })
   },
-  '/setRanking': {
+  '/setRanking/:score': {
     component: Vue.extend({
       template: '#setRanking',
       data: function(){
-        name: '';
+        return {
+          score: this.$route.params.score,
+          name: ''
+        };
+      },
+      methods: {
+        setScore: function(name){
+//TODO : ここに投稿する処理をかく
+        }
       }
     })
   },
@@ -158,8 +166,9 @@ router.map({
       template: "#lookRanking",
       data: function(){
         return{
-          names: [],
-          scores: []
+          users: []
+          // names: [],
+          // scores: []
         }
       },
       created: function(){
@@ -168,6 +177,17 @@ router.map({
       methods: {
         fetch_users: function(){
           var self = this;
+          $.ajax({
+            url: create_url(),
+            dataType: 'json'
+          }).done(function (data) {
+            console.log("sucsess!!!");
+            self.users = data;
+            console.log(self.users);
+            // console.log(self.guchis);
+          }).fail(function () {
+            console.log("fail to road json");
+          });
 
         }
       }
