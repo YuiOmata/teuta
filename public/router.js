@@ -12,8 +12,8 @@ var create_path_kana = function(song_id){
 
 //var URL_BASE = "http://server-ok";
 var URL_BASE = "http://localhost:3000";
-var create_url = function(){
-  return URL_BASE;
+var create_url = function(endpoint){
+  return URL_BASE + endpoint;
 };
 
 
@@ -151,12 +151,27 @@ router.map({
       data: function(){
         return {
           score: this.$route.params.score,
-          name: ''
+          name2: ''
         };
       },
       methods: {
-        setScore: function(name){
-//TODO : ここに投稿する処理をかく
+        setScore: function(){
+          var self = this
+          // console.log("set score");
+          $.ajax({
+            url: create_url('/users/create'),
+            type: 'POST',
+            data: JSON.stringify({
+              name: self.name2,
+              score: self.score
+            }),
+          }).done(function (data) {
+            console.log("sucsess");
+          }).fail(function(){
+            console.log("fail to send");
+          });
+          console.log(this);
+          //router.go('/lookRanking');
         }
       }
     })
@@ -178,7 +193,8 @@ router.map({
         fetch_users: function(){
           var self = this;
           $.ajax({
-            url: create_url(),
+            url: create_url('/users/get'),
+            type: 'GET',
             dataType: 'json'
           }).done(function (data) {
             console.log("sucsess!!!");

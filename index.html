@@ -99,7 +99,10 @@
   <script id="setRanking"type="text/template">
     <h3>点数をランキングに登録しよう！</h3>
     <div>{{ score }}<div>
-    <form><input autofocus v-model="name"></form>
+    <form>
+      <input autofocus v-model="name2">
+      <button v-on:click="setScore">send</button>
+    </form>
   </script>
 
   <script id="lookRanking" type="text/template">
@@ -109,18 +112,9 @@
     </div>
   </script>
 
-  <!-- <script type="text/javascript">
-    (function() {
-      var target = document.getElementById('target');
-      console.log(target + 'get!');
-      target.innerHTML = 'currentWord';
-    })();
-  </script> -->
-
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   <script>
     $.ajaxSetup({
-      // type: 'GET',
       dataType: 'text',
       xhrFields: {
         withCredentials: true
