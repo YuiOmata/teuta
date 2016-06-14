@@ -1,3 +1,1 @@
-<?php
-class dummy{}
-?>
+<?php include("index.html"); ?>
