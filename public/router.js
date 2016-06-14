@@ -79,7 +79,6 @@ router.map({
       },
       methods: {
         playMusic: function(){
-	    location.reload()
             document.open();
             document.write(
               '<audio id="sound" src="public/data/music/' +
