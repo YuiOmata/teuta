@@ -85,7 +85,8 @@ router.map({
               + this.$route.params.song_id +
               '.mp3" autoplay></audio>'
             );
-            document.write("<div>test</div>");
+            document.write("<script type=\"text/javascript\">location.reload();</script>");
+            //document.write("<div>test</div>");
             document.close();
             // console.log("music was loaded");
         },
