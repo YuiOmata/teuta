@@ -86,7 +86,7 @@ router.map({
               '.mp3" autoplay></audio>'
             );
              document.write("<script type=\"text/javascript\">"
-+ "if(window.name!=\"load\") location.reload();"
++ "if(window.name!=\"load\"){location.reload();}"
 + "winodw.name=\"load\"</script>");
             //document.write("<div>test</div>");
             document.close();
