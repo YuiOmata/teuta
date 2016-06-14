@@ -161,7 +161,7 @@ router.map({
           $.ajax({
             url: create_url('/setRank'),
             type: 'POST',
-            scriptCharset:"UTF-8",
+            scriptCharset:"utf-8",
             data: JSON.stringify({
               name: self.name2,
               score: self.score
