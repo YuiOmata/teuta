@@ -7,11 +7,11 @@ var create_path_roma = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_r.txt';
 };
 var create_path_kana = function(song_id){
-  'public/data/text/' + song_name[song_id] + '_k.txt';
+  return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-var URL_BASE = "http://yuitaso-ok-api.herokuapp.com/users";
-//var URL_BASE = "http://localhost:3000/users";
+//var URL_BASE = "http://yuitaso-ok-api.herokuapp.com/users";
+var URL_BASE = "http://localhost:3000/users";
 var create_url = function(endpoint){
   return URL_BASE + endpoint;
 };
@@ -80,12 +80,12 @@ router.map({
       methods: {
         playMusic: function(){
             document.open();
-            // document.write(
-            //   '<audio id="sound" src="public/data/music/' +
-            //   + this.$route.params.song_id +
-            //   '.mp3" autoplay></audio>'
-            // );
-            document.write("<div>test</div>");
+            document.write(
+              '<audio id="sound" src="public/data/music/' +
+              + this.$route.params.song_id +
+              '.mp3" autoplay></audio>'
+            );
+            // document.write("<div>test</div>");
             document.close();
             // console.log("music was loaded");
         },
@@ -160,17 +160,17 @@ router.map({
           // console.log("set score");
           $.ajax({
             url: create_url('/setRank'),
-            type: 'GET',
+            type: 'POST',
+            scriptCharset:"UTF-8",
             data: JSON.stringify({
               name: self.name2,
               score: self.score
-            }),
+            })
           }).done(function (data) {
             console.log("sucsess to connect DB!");
           }).fail(function(){
-            console.log("fail to send");
+            console.log(this);
           });
-          console.log(this);
           //router.go('/lookRanking');
         }
       }
