@@ -32,10 +32,34 @@ body {
 .btn:hover {
     background: -moz-linear-gradient(top,#ffd0d0, #ff5c7c 50%,#d43154 50%,#ba3168);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffc0c0), color-stop(0.5,#ff4c6c), color-stop(0.5,#c41144), to(#aa1158));
+}/*
+.rbtn {
+    text-decoration: none;
+    font-size: 150%;
+    margin: 10px;
+    padding: 10px 40px 10px 40px;
+    background: -moz-linear-gradient(top,#acf, #38e 50%,#05b 50%,#069);
+    background: -webkit-gradient(linear, left top, left bottom, from(#acf), color-stop(0.5,#38e), color-stop(0.5,#05b), to(#069));
+    border: 1px solid #dddddd;
+    color: #ffffff;
+    border-radius: 10px;
+}*/
+.rbtn {
+    text-decoration: none;
+    margin: 10px;
+    padding: 10px;
+    background: -moz-linear-gradient(top,#8ce,#8ce 5%,#8ce 5%,#09c 95%,#09c 95%,#09c);
+    color: #FFF;
+}
+.rbtn:hover {
+    background: -moz-linear-gradient(top,#adf,#adf 5%,#adf 5%,#3bd 95%,#3bd 95%,#3bd);
+    color: #FFF;
 }
 .text {
     background-color: rgba(255,255,255,0.8);
     font-size: 100%;
+    padding: 0px 10px 10px 10px;
+    word-wrap: break-word;
 }
 .text a:hover {
     color: #99ceff;

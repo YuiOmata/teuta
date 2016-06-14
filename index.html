@@ -18,7 +18,7 @@
     <img src="public/data/img/top.png" alt="タイトル" class="top">
     <!-- <p style="margin-bottom: 100px;"> -->
     <div><a v-link="{ path: '/songs' }" class="btn">曲を選択</a></div>
-    <div><a v-link="{ path: '/lookRanking' }" class="btn" style="font-size: 20px;">ランキングを見る</a></div>
+    <div><a v-link="{ path: '/lookRanking' }" class="rbtn" style="font-size: 20px;">ランキングを見る</a></div>
     </p>
     <img src="public/data/img/what.png" alt="せつめい">
     <p class="text">
@@ -32,12 +32,14 @@
         ・各曲クリア条件あり<br>
         君が代、ハナミズキ、夏色えがおで１,２,jump!の三曲から選択可能！<br>
         <br>
-        動作環境<br>
+        <b>動作環境：</b><br>
         google Chorome, safari<br></p>
+    <p><br></p>
   </script>
 
   <script id="songs" type="text/template">
     <img src="public/data/img/select.png" alt="曲を選択">
+    <p>
     <div class="text">
       <a v-link="{ path: '/startGame/0' }">君が代</a>
       <div style="margin: 30px;">
@@ -61,6 +63,8 @@
         Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
       </div>
     </div>
+    </p>
+    <p><br></p>
   </script>
 
   <script id="startGame" type="text/template">

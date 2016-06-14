@@ -7,7 +7,7 @@ var create_path_roma = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_r.txt';
 };
 var create_path_kana = function(song_id){
-  return 'public/data/text/' + song_name[song_id] + '_k.txt';
+  'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
 var URL_BASE = "http://yuitaso-ok-api.herokuapp.com/users";
