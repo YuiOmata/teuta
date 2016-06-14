@@ -87,7 +87,7 @@ router.map({
             );
              document.write("<script type=\"text/javascript\">"
 + "if(window.name!=\"load\"){location.reload();"
-+ "winodw.name=\"load\"};</script>");
++ "window.name=\"load\"};</script>");
             //document.write("<div>test</div>");
             document.close();
             // console.log("music was loaded");
