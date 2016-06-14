@@ -48,23 +48,19 @@ body {
     text-decoration: none;
     margin: 10px;
     padding: 10px;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#88ccee', endColorstr = '#0099cc');
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#88ccee', endColorstr = '#0099cc');
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr = '#88ccee', endColorstr = '#0099cc')";
-    background-image: -moz-linear-gradient(top, #88ccee, #0099cc);
-    background-image: -ms-linear-gradient(top, #88ccee, #0099cc);
-    background-image: -o-linear-gradient(top, #88ccee, #0099cc);
-    background-image: -webkit-linear-gradient(top, #88ccee, #0099cc);
-    background-image: linear-gradient(top, #88ccee, #0099cc);
+background-image: -moz-linear-gradient(top, #88ccee, #0099cc);
+background-image: -ms-linear-gradient(top, #88ccee, #0099cc);
+background-image: -o-linear-gradient(top, #88ccee, #0099cc);
+background-image: -webkit-linear-gradient(top, #88ccee, #0099cc);
+background-image: linear-gradient(top, #88ccee, #0099cc);
+
+    /*background: -moz-linear-gradient(top,#8ce,#8ce 5%,#8ce 5%,#09c 95%,#09c 95%,#09c);*/
     color: #FFF;
 }
 .rbtn:hover {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#aaddff', endColorstr = '#33bbdd');
--ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr = '#88ccee', endColorstr = '#33bbdd')";
-    background-image: -moz-linear-gradient(top, #aaddff, #33bbdd);
-    background-image: -ms-linear-gradient(top, #aaddff, #33bbdd);
-    background-image: -o-linear-gradient(top, #aaddff, #33bbdd);
-    background-image: -webkit-linear-gradient(top, #aaddff, #33bbdd);
-    background-image: linear-gradient(top, #aaddff, #33bbdd);
+    background: -moz-linear-gradient(top,#adf,#adf 5%,#adf 5%,#3bd 95%,#3bd 95%,#3bd);
     color: #FFF;
 }
 .text {
