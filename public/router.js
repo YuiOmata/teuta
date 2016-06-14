@@ -10,11 +10,16 @@ var create_path_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-//var URL_BASE = "http://yuitaso-ok-api.herokuapp.com/users";
-var URL_BASE = "http://localhost:3000/users";
+var URL_BASE = "http://yuitaso-ok-api.herokuapp.com/users";
+//var URL_BASE = "http://localhost:3000/users";
 var create_url = function(endpoint){
   return URL_BASE + endpoint;
 };
+
+Vue.component("g-header", {
+  template: "#g-header",
+  props: ['title', 'path'],
+});
 
 
 router.map({
@@ -85,9 +90,7 @@ router.map({
               + this.$route.params.song_id +
               '.mp3" autoplay></audio>'
             );
-            // document.write("<div>test</div>");
             document.close();
-            // console.log("music was loaded");
         },
         loadAllKashi: function() {
           var id = this.$route.params.song_id;
@@ -137,7 +140,7 @@ router.map({
             if(this.combo > this.maxCombo) this.maxCombo = this.combo;
             this.combo = 0;
             this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100000;//得点
-            parseInt(this.score);
+            this.score = Math.floor(this.score);
             this.isPlaying = false;
             this.isClear = true;
           }
@@ -161,12 +164,14 @@ router.map({
           $.ajax({
             url: create_url('/setRank'),
             type: 'POST',
-            scriptCharset:"utf-8",
+            scriptCharset:"UTF-8",
+            dataType: 'json',
             data: JSON.stringify({
               name: self.name2,
               score: self.score
             })
           }).done(function (data) {
+            router.go('/lookRanking');
             console.log("sucsess to connect DB!");
           }).fail(function(){
             console.log(this);
@@ -182,8 +187,6 @@ router.map({
       data: function(){
         return{
           users: []
-          // names: [],
-          // scores: []
         }
       },
       created: function(){
@@ -198,7 +201,7 @@ router.map({
             dataType: 'json'
           }).done(function (data) {
             self.users = data;
-            console.log("sucsess load json");
+            console.log(self.users);
           }).fail(function () {
             console.log("fail to load json");
           });

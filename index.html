@@ -14,6 +14,14 @@
     </div>
   </body>
 
+  <script id="g-header" type="text/template">
+    <div class="main-header clearfix" style="width:100%; position: fixed;top:0; left:0; background-color:#FFFFFF; z-index:2000;">
+      <a v-link="{ path: '/top' }"><img src="public/data/img/top.png" align="left" width="150" height="60"></i></a>
+      <h3 class="no-margin" style="text-align:center;">{{ title }}</h3>
+    </div>
+    <p style="margin-bottom:2em;" ></p>
+  </script>
+
   <script id="top" type="text/template">
     <img src="public/data/img/top.png" alt="タイトル" class="top">
     <!-- <p style="margin-bottom: 100px;"> -->
@@ -38,42 +46,46 @@
   </script>
 
   <script id="songs" type="text/template">
-    <img src="public/data/img/select.png" alt="曲を選択">
+    <g-header></g-header>
+    <img src="public/data/img/select.png">
     <p>
-    <div class="text">
-      <a v-link="{ path: '/startGame/0' }">君が代</a>
-      <div style="margin: 30px;">
-        みんなだいすきにほんのこっか!<br>
-        だいじょうぶ、ぜったいできる<br>
-        さいだいこんぼすう：７２<br>
-        なんいど：かんたん <br>
+      <div class="text">
+        <a v-link="{ path: '/startGame/0' }">君が代</a>
+        <div style="margin: 30px;">
+          みんなだいすきにほんのこっか!<br>
+          だいじょうぶ、ぜったいできる<br>
+          さいだいこんぼすう：７２<br>
+          なんいど：かんたん <br>
+        </div>
+        <a v-link="{ path: '/startGame/1' }">ハナミズキ</a>
+        <div style="margin: 30px;">
+          じつは９．１１についてうたっているらしい<br>
+          みんなはしってた？<br>
+          さいだいこんぼすう：２３５<br>
+          なんいど：ふつう<br>
+        </div>
+        <a v-link="{ path: '/startGame/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a>
+        <div style="margin: 30px;">
+          うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+          にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+          Ｍａｘｃｏｍｂｏ：５３１<br>
+          Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
+        </div>
       </div>
-      <a v-link="{ path: '/startGame/1' }">ハナミズキ</a>
-      <div style="margin: 30px;">
-        じつは９．１１についてうたっているらしい<br>
-        みんなはしってた？<br>
-        さいだいこんぼすう：２３５<br>
-        なんいど：ふつう<br>
-      </div>
-      <a v-link="{ path: '/startGame/2' }">夏色えがおで１，２，ｊｕｍｐ！ </a>
-      <div style="margin: 30px;">
-        うおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
-        にこおおおおおおおおおおおおおおおおおおおオレだｱｱｱｱｱｱｱｱｱｱｱｱｱｱあああああああああああああああああああああああああああああ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
-        Ｍａｘｃｏｍｂｏ：５３１<br>
-        Ｄｉｆｆｉｃｕｌｔｙ：Ｅｘｔｒｅａｍ <br>
-      </div>
-    </div>
     </p>
     <p><br></p>
   </script>
 
   <script id="startGame" type="text/template">
+    <g-header></g-header>
     <div style="padding-top : 200px">
     <a v-link="{ path: '/game/' + $route.params.song_id }" class="sbtn" style="">start</a>
+    <p style="margin-top: 30px;">良い子のみんなは、くろーむで遊ぼうね</p>
     <div>
   </script>
 
   <script  id="game" type="text/template">
+    <g-header></g-header>
     <p id="target">{{ playMusic() }}</p>
     <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
@@ -93,7 +105,7 @@
       <h3 v-else>{{ 'MAX コンボ：' + maxCombo }}</h3>
       <h3 v-else>{{ 'score is：' + score }}</h3>
       <div>
-        <a v-link="{ path: '/setRanking'}" class="btn">ランキングに登録</a><br>
+        <a v-link="{ path: '/setRanking/' + score }" class="btn">ランキングに登録</a><br>
         <a v-link="{ path: '/startGame' + $route.params.song_id }" class="btn">Replay</a><br>
         <a v-link="{ path: '/songs' }" class="btn">back</a><br>
       </div>
@@ -101,6 +113,7 @@
   </script>
 
   <script id="setRanking"type="text/template">
+    <g-header></g-header>
     <h3>点数をランキングに登録しよう！</h3>
     <div>{{ score }}<div>
     <form>
@@ -110,10 +123,15 @@
   </script>
 
   <script id="lookRanking" type="text/template">
-    <h3>this is lookRanking page</h3>
-    <div v-for="user in users">
-      <div>{{ user.name + '-'+ user.score}}<div>
-    </div>
+    <g-header></g-header>
+    <h3>みんなのランキング</h3>
+    <table border="0" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333" align="center">
+      <tr v-for="user in users" >
+        <th >{{ user.name }}</th>
+        <th>{{ user.score }}</th>
+      </tr>
+    </table>
+    <div><a v-link="{ path: '/top'}" class="btn" style="font-size: 7px;">戻る</a></div>
   </script>
 
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
