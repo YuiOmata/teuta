@@ -79,8 +79,11 @@
   <script id="startGame" type="text/template">
     <g-header></g-header>
     <div style="padding-top : 200px">
-    <a v-link="{ path: '/game/' + $route.params.song_id }" class="sbtn" style="">start</a>
-    <p style="margin-top: 30px;">良い子のみんなは、くろーむで遊ぼうね</p>
+    <a v-link="{ path: '/game/' + $route.params.song_id }" class="sbtn" style="">start!</a>
+    <p style="margin-top: 30px; padding: 40px;" class="text">
+      良い子のみんなは、くろーむで遊ぼうね<br>
+      読み込みが遅い時はリロードしてみよう！<br>
+    </p>
     <div>
   </script>
 
@@ -105,9 +108,9 @@
       <h3 v-else>{{ 'MAX コンボ：' + maxCombo }}</h3>
       <h3 v-else>{{ 'score is：' + score }}</h3>
       <div>
-        <a v-link="{ path: '/setRanking/' + score }" class="btn">ランキングに登録</a><br>
-        <a v-link="{ path: '/startGame' + $route.params.song_id }" class="btn">Replay</a><br>
-        <a v-link="{ path: '/songs' }" class="btn">back</a><br>
+        <button v-link="{ path: '/setRanking/' + score }" class="btn" v-on:click="">ランキングに登録</button><br>
+        <button v-link="{ path: '/startGame' + $route.params.song_id }" class="btn">Replay</button><br>
+        <button v-link="{ path: '/songs' }" class="btn">back</button><br>
       </div>
     </div>
   </script>

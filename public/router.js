@@ -84,7 +84,6 @@ router.map({
       },
       methods: {
         playMusic: function(){
-            document.open();
             document.write(
               '<audio id="sound" src="public/data/music/' +
               + this.$route.params.song_id +
@@ -94,7 +93,6 @@ router.map({
               + "if(window.name!=\"load\"){location.reload();"
               + "window.name=\"load\"};</script>"
             );
-            document.close();
         },
         loadAllKashi: function() {
           var id = this.$route.params.song_id;
@@ -128,7 +126,8 @@ router.map({
             this.combo++;
             this.totalInputChars++;
           }
-          else {
+          else
+          {
             this.failInput = this.inputChar;
             if(this.combo > this.maxCombo)
               this.maxCombo = this.combo;
@@ -145,9 +144,18 @@ router.map({
             this.combo = 0;
             this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100000;//得点
             this.score = Math.floor(this.score);
+            console.log(this.score);
             this.isPlaying = false;
             this.isClear = true;
           }
+        },
+        unload: function(){
+          document.write(
+              "<script type=\"text/javascript\">"
+            + "function onUnload(){"
+            + "window.name = 0; pause();}"
+            + "</script>"
+          );
         }
       }
     })
