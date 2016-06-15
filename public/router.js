@@ -10,7 +10,7 @@ var create_path_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-var URL_BASE = "http://yuitaso-ok-api.herokuapp.com/users";
+var URL_BASE = "https://yuitaso-ok-api.herokuapp.com/users";
 //var URL_BASE = "http://localhost:3000/users";
 var create_url = function(endpoint){
   return URL_BASE + endpoint;
