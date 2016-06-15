@@ -89,10 +89,14 @@ router.map({
               + this.$route.params.song_id +
               '.mp3" autoplay></audio>'
             );
-            document.write("<script type=\"text/javascript\">"
-              + "if(window.name!=\"load\"){location.reload();"
-              + "window.name=\"load\"};</script>"
-            );
+            if(window.name!="load"){
+              location.reload();
+              window.name="load"
+            };
+            //document.write("<script type=\"text/javascript\">"
+            //  + "if(window.name!=\"load\"){location.reload();"
+            //  + "window.name=\"load\"};</script>"
+            //);
         },
         loadAllKashi: function() {
           var id = this.$route.params.song_id;
@@ -150,6 +154,7 @@ router.map({
           }
         },
         unload: function(){
+          window.name = "";
           // document.write(
           //     "<script type=\"text/javascript\">"
           //   + "function onUnload(){"
