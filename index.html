@@ -110,7 +110,7 @@
         <h3 v-else>{{ 'score ：' + score }}</h3>
         <div style="font-size: 20px;">
           <button v-link="{ path: '/setRanking/' + score }" class="btn" v-on:click="unload()">ランキングに登録</button><br>
-          <button v-link="{ path: '/startGame' + $route.params.song_id }" class="btn" v-on:click="unload()">Replay</button>
+          <button v-link="{ path: '/startGame/' + $route.params.song_id }" class="btn" v-on:click="unload()">Replay</button>
           <button v-link="{ path: '/songs' }" class="btn" v-on:click="unload()">back</button><br>
         </div>
       </div>
