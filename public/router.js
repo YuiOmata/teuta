@@ -56,8 +56,8 @@ router.map({
             phrases: [],//行ごとに分割した配列
             guidPhrases: [],
             phrasesLength: 0,//
-            isPlaying: false,//進行中フラグ
-            isClear: true,//終了済みフラグ
+            isPlaying: true,//進行中フラグ
+            isClear: false,//終了済みフラグ
             failInput: '',//誤字
             onfocus: 0,//打ち込み中の行
             onplaying: 0,//再生中の行
