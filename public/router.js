@@ -56,8 +56,8 @@ router.map({
             phrases: [],//行ごとに分割した配列
             guidPhrases: [],
             phrasesLength: 0,//
-            isPlaying: true,//進行中フラグ
-            isClear: false,//終了済みフラグ
+            isPlaying: false,//進行中フラグ
+            isClear: true,//終了済みフラグ
             failInput: '',//誤字
             onfocus: 0,//打ち込み中の行
             onplaying: 0,//再生中の行
@@ -67,7 +67,7 @@ router.map({
             maxCombo: 0,
             fullCombo: 0,
             totalInputChars: 0,
-            score: 0
+            score: 4323
         };
       },
       created: function () {
@@ -150,12 +150,12 @@ router.map({
           }
         },
         unload: function(){
-          document.write(
-              "<script type=\"text/javascript\">"
-            + "function onUnload(){"
-            + "window.name = 0; pause();}"
-            + "</script>"
-          );
+          // document.write(
+          //     "<script type=\"text/javascript\">"
+          //   + "function onUnload(){"
+          //   + "window.name = 0;}"
+          //   + "</script>"
+          // );
         }
       }
     })
@@ -183,10 +183,11 @@ router.map({
               score: self.score
             })
           }).done(function (data) {
-            router.go('/lookRanking');
             console.log("sucsess to connect DB!");
+            router.go('/lookRanking');
           }).fail(function(){
-            console.log(this);
+            console.log("fail sed ranking");
+            router.go('/setRanking/' + self.$route.params.score);
           });
           //router.go('/lookRanking');
         }

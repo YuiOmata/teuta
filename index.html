@@ -103,36 +103,44 @@
       </div>
     </div>
     <div v-if="isClear">
-      <h1>clear!!</h1>
-      <h3 v-if="maxCombo == fullCombo">FULL COMBO!!!</h3>
-      <h3 v-else>{{ 'MAX コンボ：' + maxCombo }}</h3>
-      <h3 v-else>{{ 'score is：' + score }}</h3>
-      <div>
-        <button v-link="{ path: '/setRanking/' + score }" class="btn" v-on:click="">ランキングに登録</button><br>
-        <button v-link="{ path: '/startGame' + $route.params.song_id }" class="btn">Replay</button><br>
-        <button v-link="{ path: '/songs' }" class="btn">back</button><br>
+      <h1 style="color: #F4A460;">clear!!</h1>
+      <h3 v-if="maxCombo == fullCombo" style="color: #FF8C00;">FULL COMBO!!!</h3>
+      <div  class="text">
+        <h3 v-else>{{ 'Max combo：' + maxCombo }}</h3>
+        <h3 v-else>{{ 'score ：' + score }}</h3>
+        <div style="font-size: 20px;">
+          <button v-link="{ path: '/setRanking/' + score }" class="btn" v-on:click="unload()">ランキングに登録</button><br>
+          <button v-link="{ path: '/startGame' + $route.params.song_id }" class="btn" v-on:click="unload()">Replay</button>
+          <button v-link="{ path: '/songs' }" class="btn" v-on:click="unload()">back</button><br>
+        </div>
       </div>
     </div>
   </script>
 
   <script id="setRanking"type="text/template">
     <g-header></g-header>
-    <h3>点数をランキングに登録しよう！</h3>
-    <div>{{ score }}<div>
+    <div><h3 style="color: #F4A460;">点数をランキングに登録しよう！</h3></div>
+    <div style="margin: 50px;">{{ score + ' point' }}</div>
     <form>
-      <input autofocus v-model="name2">
+      <input autofocus v-model="name2" placeholder="名前">
       <button v-on:click="setScore">send</button>
     </form>
   </script>
 
   <script id="lookRanking" type="text/template">
     <g-header></g-header>
-    <h3>みんなのランキング</h3>
-    <table border="0" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333" align="center">
-      <tr v-for="user in users" >
-        <th >{{ user.name }}</th>
-        <th>{{ user.score }}</th>
-      </tr>
+    <p style="font-size: 40px; color: #FF8C00;">みんなのランキング</p>
+    <table border="0" align="center">
+      <tbody>
+        <tr style="font-size: 35px;">
+          <th width="400" style="color: #F4A460;">name</th>
+          <th width="400" style="color: #F4A460;">score</th>
+        </tr>
+        <tr v-for="user in users" style="font-size: 30px;">
+          <td>{{ user.name }}</td>
+          <td>{{ user.score }}</td>
+        </tr>
+    </tbody>
     </table>
     <div><a v-link="{ path: '/top'}" class="btn" style="font-size: 7px;">戻る</a></div>
   </script>
