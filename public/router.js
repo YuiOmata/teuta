@@ -42,7 +42,10 @@ router.map({
   },
   '/startGame/:song_id':{
     component:  Vue.extend({
-      template: '#startGame'
+      template: '#startGame',
+      created: function(){
+        window.name="unload"
+      }
     })
   },
   '/game/:song_id': {
@@ -93,10 +96,6 @@ router.map({
               location.reload();
               window.name="load"
             };
-            //document.write("<script type=\"text/javascript\">"
-            //  + "if(window.name!=\"load\"){location.reload();"
-            //  + "window.name=\"load\"};</script>"
-            //);
         },
         loadAllKashi: function() {
           var id = this.$route.params.song_id;
@@ -124,14 +123,13 @@ router.map({
           return (index>=this.onfocus && index < this.onfocus+3) ? true : false;
         },
         checkLastInput: function(index){
-          if( this.inputChar ==  this.phrases[ index ][ this.inputString.length ] ){//入力正誤判定
+          if( this.inputChar < 'a' || this.inputChar > 'z'){//改行、エンターなら無視
+          } else if ( this.inputChar ==  this.phrases[ index ][ this.inputString.length ] ){//入力正誤判定
             this.inputString = this.inputString + this.inputChar;
             this.failInput = '';
             this.combo++;
             this.totalInputChars++;
-          }
-          else
-          {
+          } else {
             this.failInput = this.inputChar;
             if(this.combo > this.maxCombo)
               this.maxCombo = this.combo;
@@ -144,23 +142,17 @@ router.map({
             this.inputString = '';
           }
           if( this.onfocus == this.phrasesLength ){//クリア判定
-            if(this.combo > this.maxCombo) this.maxCombo = this.combo;
-            this.combo = 0;
-            this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100000;//得点
-            this.score = Math.floor(this.score);
-            console.log(this.score);
-            this.isPlaying = false;
-            this.isClear = true;
+            this.finish();
           }
         },
-        unload: function(){
-          window.name = "";
-          // document.write(
-          //     "<script type=\"text/javascript\">"
-          //   + "function onUnload(){"
-          //   + "window.name = 0;}"
-          //   + "</script>"
-          // );
+        finish: function(){
+          if(this.combo > this.maxCombo) this.maxCombo = this.combo;
+          this.combo = 0;
+          this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100000;//得点
+          this.score = Math.floor(this.score);
+          console.log(this.score);
+          this.isPlaying = false;
+          this.isClear = true;
         }
       }
     })

@@ -91,16 +91,19 @@
     <g-header></g-header>
     <p id="target">{{ playMusic() }}</p>
     <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
-    <div v-if="isPlaying" v-for="phrase in phrases" style="margin: 10px;">
-      <div v-if="innerRange($index)">
-        <div>{{ guidPhrases[$index] }}</div>
-        <div>{{ phrase }}</div>
-        <div v-if="$index == onfocus">
-          {{ inputStringCurrent }}
-          <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
+    <div v-if="isPlaying" style="margin: 10px; font-size: 15px;">
+      <div v-for="phrase in phrases">
+        <div v-if="innerRange($index)">
+          <div>{{ guidPhrases[$index] }}</div>
+          <div>{{ phrase }}</div>
+          <div v-if="$index == onfocus">
+            {{ inputStringCurrent }}
+            <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
+          </div>
+          <div><input v-if="$index == onfocus" autofocus @keydown="checkLastInput($index)" v-model="inputChar"></div><br>
         </div>
-        <div><input v-if="$index == onfocus" autofocus @keydown="checkLastInput($index)" v-model="inputChar"></div>
       </div>
+      <div><a v-link="{ path: '/startGame/' + $route.params.song_id }" class="btn">restart</a></div>
     </div>
     <div v-if="isClear">
       <h1 style="color: #F4A460;">clear!!</h1>
@@ -109,9 +112,9 @@
         <h3 v-else>{{ 'Max combo：' + maxCombo }}</h3>
         <h3 v-else>{{ 'score ：' + score }}</h3>
         <div style="font-size: 20px;">
-          <button v-link="{ path: '/setRanking/' + score }" class="btn" v-on:click="unload()">ランキングに登録</button><br>
-          <button v-link="{ path: '/startGame/' + $route.params.song_id }" class="btn" v-on:click="unload()">Replay</button>
-          <button v-link="{ path: '/songs' }" class="btn" v-on:click="unload()">back</button><br>
+          <a v-link="{ path: '/setRanking/' + score }" class="btn" style="margin: 20px;">ランキングに登録</a><br>
+          <a v-link="{ path: '/startGame/' + $route.params.song_id }" class="btn">Replay</a>
+          <a v-link="{ path: '/songs' }" class="btn">back</a><br>
         </div>
       </div>
     </div>
