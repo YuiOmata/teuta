@@ -10,8 +10,8 @@ var create_path_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-var URL_BASE = "https://yuitaso-ok-api.herokuapp.com/users";
-//var URL_BASE = "http://localhost:3000/users";
+//var URL_BASE = "https://yuitaso-ok-api.herokuapp.com/users";
+var URL_BASE = "http://localhost:3000/users";
 var create_url = function(endpoint){
   return URL_BASE + endpoint;
 };
@@ -20,6 +20,8 @@ Vue.component("g-header", {
   template: "#g-header",
   props: ['title', 'path'],
 });
+
+var currentScore = 0;
 
 
 router.map({
@@ -150,33 +152,38 @@ router.map({
           this.combo = 0;
           this.score = (this.maxCombo * 50 + this.totalInputChars*30 ) / fullScore[ this.$route.params.song_id ] * 100000;//得点
           this.score = Math.floor(this.score);
-          console.log(this.score);
           this.isPlaying = false;
           this.isClear = true;
+          currentScore = this.score;
+          console.log(URL_BASE);
         }
       }
     })
   },
-  '/setRanking/:score': {
+  '/setRanking': {
     component: Vue.extend({
       template: '#setRanking',
       data: function(){
         return {
-          score: this.$route.params.score,
-          name2: ''
+          score: 0,
+          name: ''
         };
+      },
+      created: function(){
+        this.score = currentScore;
+        currentScore = 0;
+        console.log('current :' + currentScore);
       },
       methods: {
         setScore: function(){
           var self = this
-          // console.log("set score");
           $.ajax({
             url: create_url('/setRank'),
             type: 'POST',
             scriptCharset:"UTF-8",
             dataType: 'json',
             data: JSON.stringify({
-              name: self.name2,
+              name: self.name,
               score: self.score
             })
           }).done(function (data) {

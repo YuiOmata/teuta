@@ -112,7 +112,7 @@
         <h3 v-else>{{ 'Max combo：' + maxCombo }}</h3>
         <h3 v-else>{{ 'score ：' + score }}</h3>
         <div style="font-size: 20px;">
-          <a v-link="{ path: '/setRanking/' + score }" class="btn" style="margin: 20px;">ランキングに登録</a><br>
+          <a v-link="{ path: '/setRanking' }" class="btn" style="margin: 20px;">ランキングに登録</a><br>
           <a v-link="{ path: '/startGame/' + $route.params.song_id }" class="btn">Replay</a>
           <a v-link="{ path: '/songs' }" class="btn">back</a><br>
         </div>
@@ -125,7 +125,7 @@
     <div><h3 style="color: #F4A460;">点数をランキングに登録しよう！</h3></div>
     <div style="margin: 50px;">{{ score + ' point' }}</div>
     <form>
-      <input autofocus v-model="name2" placeholder="名前">
+      <input autofocus v-model="name" placeholder="名前">
       <button v-on:click="setScore">send</button>
     </form>
   </script>
