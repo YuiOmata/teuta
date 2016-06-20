@@ -125,21 +125,23 @@ router.map({
           return (index>=this.onfocus && index < this.onfocus+3) ? true : false;
         },
         checkLastInput: function(index){
-          if( this.inputChar < 'a' || this.inputChar > 'z'){//改行、エンターなら無視
-          } else if ( this.inputChar ==  this.phrases[ index ][ this.inputString.length ] ){//入力正誤判定
-            this.inputString = this.inputString + this.inputChar;
+          var c = this.inputChar;
+          var str = this.inputString;
+          if( c < 'a' || c > 'z' && c ){//改行、エンターなら無視
+          } else if ( c ==  this.phrases[ index ][ str.length ] ){//入力正誤判定
+            str = str + c;
             this.failInput = '';
             this.combo++;
             this.totalInputChars++;
           } else {
-            this.failInput = this.inputChar;
+            this.failInput = c;
             if(this.combo > this.maxCombo)
               this.maxCombo = this.combo;
             this.combo = 0;
           }
-          this.inputChar = '';
+          c = '';
 
-          if( this.inputString == this.phrases[ index ] ){//行終了判定
+          if( str == this.phrases[ index ] ){//行終了判定
             this.onfocus++;
             this.inputString = '';
           }
