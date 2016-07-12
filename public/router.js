@@ -122,26 +122,28 @@ router.map({
           });
         },
         innerRange: function(index){
-          return (index>=this.onfocus && index < this.onfocus+3) ? true : false;
+          return (index>=this.onfocus && index < this.onfocus+3 || index>="0") ? true : false;
         },
         checkLastInput: function(index){
           var c = this.inputChar;
           var str = this.inputString;
-          if( c < 'a' || c > 'z' && c ){//改行、エンターなら無視
-          } else if ( c ==  this.phrases[ index ][ str.length ] ){//入力正誤判定
-            str = str + c;
-            this.failInput = '';
-            this.combo++;
-            this.totalInputChars++;
-          } else {
-            this.failInput = c;
-            if(this.combo > this.maxCombo)
-              this.maxCombo = this.combo;
-            this.combo = 0;
+          if( (c >= 'a' && c <= 'z' ) || (c >= '0' && c <= '9') ){//改行、エンターなら無視
+            if ( c ==  this.phrases[ index ][ str.length ] ){//入力正誤判定
+              console.log("true 入力正誤判定")
+              this.inputString = this.inputString + c;
+              this.failInput = '';
+              this.combo++;
+              this.totalInputChars++;
+            } else {
+              this.failInput = c;
+              if(this.combo > this.maxCombo)
+                this.maxCombo = this.combo;
+              this.combo = 0;
+            }
           }
-          c = '';
+          this.inputChar = "";
 
-          if( str == this.phrases[ index ] ){//行終了判定
+          if( this.inputString == this.phrases[ index ] ){//行終了判定
             this.onfocus++;
             this.inputString = '';
           }
