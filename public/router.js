@@ -73,7 +73,7 @@ router.map({
             fullCombo: 0,
             totalInputChars: 0,
             score: 0,
-            changeLow: true,
+            changeLow: false,
         };
       },
       created: function () {
@@ -159,11 +159,7 @@ router.map({
             this.onfocus++;
             this.inputString = '';
             this.inputChar = '';
-            // $('(input[@id="inputStr"])[2]').focus();
             this.changeLow = true;
-            // nextInput = $('input[id="inputStr"]');
-            // nextInput[1].focus();
-            // console.log(this.changeLow)
           }
         },
         finish: function(){
