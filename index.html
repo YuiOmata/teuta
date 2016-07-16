@@ -102,7 +102,7 @@
           </div>
           {{ focusNext() }}
           <div>
-            <input id="inputStr" autofocus @keydown="checkLastInput($index)" v-model="inputChar">
+            <input id="inputStr" autofocus v-show="$index == onfocus" @keydown="checkLastInput($index)" v-model="inputChar">
             <!-- v-show="$index == onfocus" -->
           </div><br>
         </div>
