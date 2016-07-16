@@ -100,7 +100,11 @@
             {{ inputStringCurrent }}
             <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
           </div>
-          <div><input v-if="$index == onfocus" autofocus @keydown="checkLastInput($index)" v-model="inputChar"></div><br>
+          {{ focusNext() }}
+          <div>
+            <input id="inputStr" autofocus @keydown="checkLastInput($index)" v-model="inputChar">
+            <!-- v-show="$index == onfocus" -->
+          </div><br>
         </div>
       </div>
       <div><a v-link="{ path: '/startGame/' + $route.params.song_id }" class="btn">restart</a></div>
@@ -148,6 +152,7 @@
     <div><a v-link="{ path: '/top'}" class="btn" style="font-size: 7px;">戻る</a></div>
   </script>
 
+  <script src="http://svn.coderepos.org/share/lang/javascript/javascript-xpath/trunk/release/javascript-xpath-latest.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   <script>
     $.ajaxSetup({

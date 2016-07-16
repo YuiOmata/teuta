@@ -72,7 +72,8 @@ router.map({
             maxCombo: 0,
             fullCombo: 0,
             totalInputChars: 0,
-            score: 0
+            score: 0,
+            changeLow: true,
         };
       },
       created: function () {
@@ -121,15 +122,23 @@ router.map({
             console.log('fail to road data _k');
           });
         },
+        focusNext: function(){
+          if(this.changeLow){
+            nextInput = $('input[id="inputStr"]');
+            nextInput[0].focus();
+            console.log(nextInput)
+            this.changeLow = false;
+          }
+        },
         innerRange: function(index){
-          return (index>=this.onfocus && index < this.onfocus+3 || index>="0") ? true : false;
+          return (index>=this.onfocus && index < this.onfocus+3 ) ? true : false;
         },
         checkLastInput: function(index){
           var c = this.inputChar;
           var str = this.inputString;
-          if( (c >= 'a' && c <= 'z' ) || (c >= '0' && c <= '9') ){//改行、エンターなら無視
+
+          if( (c >= 'a' && c <= 'z' ) || (c >= '0' && c <= '9') ){//英小文字、数字以外は無視
             if ( c ==  this.phrases[ index ][ str.length ] ){//入力正誤判定
-              console.log("true 入力正誤判定")
               this.inputString = this.inputString + c;
               this.failInput = '';
               this.combo++;
@@ -143,12 +152,18 @@ router.map({
           }
           this.inputChar = "";
 
-          if( this.inputString == this.phrases[ index ] ){//行終了判定
-            this.onfocus++;
-            this.inputString = '';
-          }
           if( this.onfocus == this.phrasesLength ){//クリア判定
             this.finish();
+          }
+          else if( this.inputString == this.phrases[ index ] ){//行終了判定
+            this.onfocus++;
+            this.inputString = '';
+            this.inputChar = '';
+            // $('(input[@id="inputStr"])[2]').focus();
+            this.changeLow = true;
+            // nextInput = $('input[id="inputStr"]');
+            // nextInput[1].focus();
+            // console.log(this.changeLow)
           }
         },
         finish: function(){
