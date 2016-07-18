@@ -159,7 +159,6 @@ router.map({
             this.changeLow = true;
           }
           if( this.onfocus == this.phrasesLength ){//クリア判定
-            console.log("クリア判定通過！！！！！！！")
             this.finish();
           }
         },
