@@ -93,6 +93,7 @@
     <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" style="margin: 10px; font-size: 15px;">
       <div v-for="phrase in phrases">
+                  {{ focusNext() }}
         <div v-if="innerRange($index)">
           <div>{{ guidPhrases[$index] }}</div>
           <div>{{ phrase }}</div>
@@ -100,10 +101,8 @@
             {{ inputStringCurrent }}
             <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
           </div>
-          {{ focusNext() }}
           <div>
-            <input id="inputStr" autofocus @keydown="checkLastInput($index)" v-model="inputChar">
-            <!-- v-show="$index == onfocus" -->
+            <input id="inputStr" autofocus v-show="$index == onfocus" @keydown="checkLastInput($index)" v-model="inputChar">
           </div><br>
         </div>
       </div>
