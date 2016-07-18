@@ -10,8 +10,8 @@ var create_path_kana = function(song_id){
   return 'public/data/text/' + song_name[song_id] + '_k.txt';
 };
 
-//var URL_BASE = "https://yuitaso-ok-api.herokuapp.com/users";
-var URL_BASE = "http://localhost:3000/users";
+var URL_BASE = "https://yuitaso-ok-api.herokuapp.com/users";
+// var URL_BASE = "http://localhost:3000/users";
 var create_url = function(endpoint){
   return URL_BASE + endpoint;
 };
@@ -176,17 +176,17 @@ router.map({
       }
     })
   },
-  '/setRanking': {
+  '/setRanking/:score': {
     component: Vue.extend({
       template: '#setRanking',
       data: function(){
         return {
           score: 0,
-          name: ''
+          name: '',
         };
       },
       created: function(){
-        this.score = currentScore;
+        // this.score = this.$route.params.score;
         currentScore = 0;
         console.log('current :' + currentScore);
       },
