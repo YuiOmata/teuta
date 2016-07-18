@@ -152,14 +152,14 @@ router.map({
           }
           this.inputChar = "";
 
-          if( this.onfocus == this.phrasesLength ){//クリア判定
-            this.finish();
-          }
-          else if( this.inputString == this.phrases[ index ] ){//行終了判定
+          if( this.inputString == this.phrases[ index ] ){//行終了判定
             this.onfocus++;
             this.inputString = '';
             this.inputChar = '';
             this.changeLow = true;
+          }
+          if( this.onfocus == this.phrasesLength ){//クリア判定
+            this.finish();
           }
         },
         finish: function(){
