@@ -93,6 +93,7 @@
     <h3 v-if="getCombo > 4">{{ getCombo + "コンボ！！" }}</h3>
     <div v-if="isPlaying" style="margin: 10px; font-size: 15px;">
       <div v-for="phrase in phrases">
+        {{ focusNext() }}
         <div v-if="innerRange($index)">
           <div>{{ guidPhrases[$index] }}</div>
           <div>{{ phrase }}</div>
@@ -100,9 +101,8 @@
             {{ inputStringCurrent }}
             <font v-if="failInput" style="color: #ff0000;">{{ failInput }}</font>
           </div>
-          {{ focusNext() }}
           <div>
-            <input id="inputStr" autofocus @keydown="checkLastInput($index)" v-model="inputChar">
+            <input id="inputStr" autofocus v-show="$index == onfocus" @keydown="checkLastInput($index)" v-model="inputChar">
             <!-- v-show="$index == onfocus" -->
           </div><br>
         </div>
@@ -116,7 +116,7 @@
         <h3 v-else>{{ 'Max combo：' + maxCombo }}</h3>
         <h3 v-else>{{ 'score ：' + score }}</h3>
         <div style="font-size: 20px;">
-          <a v-link="{ path: '/setRanking' }" class="btn" style="margin: 20px;">ランキングに登録</a><br>
+          <a v-link="{ path: '/setRanking/'+ score }" class="btn" style="margin: 20px;">ランキングに登録</a><br>
           <a v-link="{ path: '/startGame/' + $route.params.song_id }" class="btn">Replay</a>
           <a v-link="{ path: '/songs' }" class="btn">back</a><br>
         </div>
@@ -152,7 +152,6 @@
     <div><a v-link="{ path: '/top'}" class="btn" style="font-size: 7px;">戻る</a></div>
   </script>
 
-  <script src="http://svn.coderepos.org/share/lang/javascript/javascript-xpath/trunk/release/javascript-xpath-latest.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   <script>
     $.ajaxSetup({

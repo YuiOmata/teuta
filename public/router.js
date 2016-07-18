@@ -73,7 +73,7 @@ router.map({
             fullCombo: 0,
             totalInputChars: 0,
             score: 0,
-            changeLow: true,
+            changeLow: false,
         };
       },
       created: function () {
@@ -126,7 +126,7 @@ router.map({
           if(this.changeLow){
             nextInput = $('input[id="inputStr"]');
             nextInput[0].focus();
-            console.log(nextInput)
+            console.log(nextInput[0])
             this.changeLow = false;
           }
         },
@@ -152,18 +152,15 @@ router.map({
           }
           this.inputChar = "";
 
-          if( this.onfocus == this.phrasesLength ){//クリア判定
-            this.finish();
-          }
-          else if( this.inputString == this.phrases[ index ] ){//行終了判定
+          if( this.inputString == this.phrases[ index ] ){//行終了判定
             this.onfocus++;
             this.inputString = '';
             this.inputChar = '';
-            // $('(input[@id="inputStr"])[2]').focus();
             this.changeLow = true;
-            // nextInput = $('input[id="inputStr"]');
-            // nextInput[1].focus();
-            // console.log(this.changeLow)
+          }
+          if( this.onfocus == this.phrasesLength ){//クリア判定
+            console.log("クリア判定通過！！！！！！！")
+            this.finish();
           }
         },
         finish: function(){
@@ -173,8 +170,9 @@ router.map({
           this.score = Math.floor(this.score);
           this.isPlaying = false;
           this.isClear = true;
+          this.changeLow = false;
           currentScore = this.score;
-          console.log(URL_BASE);
+          console.log("is clear? : " + this.isClear);
         }
       }
     })
