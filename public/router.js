@@ -101,9 +101,9 @@ router.map({
             };
         },
         loadAllKashi: function() {
-          var id = this.$route.params.song_id;
+          var song_id = this.$route.params.song_id;
           var self = this;
-          $.get(create_path_roma(id), function(data){
+          $.get(create_path_roma(song_id), function(data){
             self.allKashi = data;
             self.phrases = self.allKashi.split(/\r\n|\r|\n/);
             self.phrases.pop();
@@ -113,7 +113,7 @@ router.map({
           }).fail(function(){
             console.log('fail to road data _r');
           });
-          $.get(create_path_kana(id), function(data){
+          $.get(create_path_kana(song_id), function(data){
             self.allGuid = data;
             self.guidPhrases = self.allGuid.split(/\r\n|\r|\n/);
             self.guidPhrases.pop();
